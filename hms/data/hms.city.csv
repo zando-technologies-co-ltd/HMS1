@@ -1,0 +1,76 @@
+id,state_id:id,name,code
+city_RAKHINE_SITTWE,state_mm_5,Sittwe,SITTWE
+city_MANDALAY_MYINGYAN,state_mm_9,Myingyan,MYINGYAN
+city_AYEYAWADY_HINTHADA,state_mm_6,Hinthada,HINTHADA
+city_SAGAING_KATHA,state_mm_13,Katha,KATHA
+city_MANDALAY_KYAUKSE,state_mm_9,Kyaukse,KYAUKSE
+city_SAGAING_KALAY,state_mm_13,Kalay,KALAY
+city_KACHIN_MOHNYIN,state_mm_1,Mohnyin,MOHNYIN
+city_KACHIN_BHAMO,state_mm_1,Bhamo,BHAMO
+city_SHAN_TACHILEIK,state_mm_8,Tachileik,TACHILEIK
+city_SHAN_KENGTUNG,state_mm_8,Kengtung,KENGTUNG
+city_SHAN_MINESAT,state_mm_8,Minesat,MINESAT
+city_RAKHINE_MYAUK U,state_mm_5,Myauk U,MYAUK U
+city_CHIN_MINDAT,state_mm_12,Mindat,MINDAT
+city_KAYAH_LOIKAW,state_mm_3,Loikaw,LOIKAW
+city_SHAN_MINEPHYAT,state_mm_8,Minephyat,MINEPHYAT
+city_MON_MAWLAMYINE,state_mm_4,Mawlamyine,MAWLAMYINE
+city_MANDALAY_PYIN OO LWIN,state_mm_9,Pyin Oo Lwin,PYIN OO LWIN
+city_MAGWAY_PAKOKKU,state_mm_11,Pakokku,PAKOKKU
+city_YANGON_NORTH YANGON,state_mm_7,North Yangon,NORTH YANGON
+city_YANGON_EAST YANGON,state_mm_7,East Yangon,EAST YANGON
+city_TANINTHARYI_DAWEI,state_mm_10,Dawei,DAWEI
+city_SHAN_MAKMAN,state_mm_8,Makman,MAKMAN
+city_BAGO_TOUNGOO,state_mm_14,Toungoo,TOUNGOO
+city_SAGAING_MAWLAIK,state_mm_13,Mawlaik,MAWLAIK
+city_SHAN_LOILEN,state_mm_8,Loilen,LOILEN
+city_CHIN_HAKHA,state_mm_12,Hakha,HAKHA
+city_AYEYAWADY_MAUBIN,state_mm_6,Maubin,MAUBIN
+city_SAGAING_YINMARPIN,state_mm_13,Yinmarpin,YINMARPIN
+city_MANDALAY_MEIKTILA,state_mm_9,Meiktila,MEIKTILA
+city_RAKHINE_MAUNGTAW,state_mm_5,Maungtaw,MAUNGTAW
+city_KACHIN_MYITKYINA,state_mm_1,Myitkyina,MYITKYINA
+city_YANGON_WEST YANGON,state_mm_7,West Yangon,WEST YANGON
+city_SHAN_KYAUKME,state_mm_8,Kyaukme,KYAUKME
+city_NAYPYITAW_OTTARA (NORTH),state_mm_2,Ottara(North),OTTARA (NORTH)
+city_MANDALAY_NYAUNG U,state_mm_9,Nyaung U,NYAUNG U
+city_SHAN_NYAUNG SHWE,state_mm_8,NYAUNG SHWE,NYAUNG SHWE
+city_SHAN_MUSE,state_mm_8,Muse,MUSE
+city_BAGO_BAGO,state_mm_14,Bago,BAGO
+city_SAGAING_SAGAING,state_mm_13,Sagaing,SAGAING
+city_KAYIN_HPA-AN,state_mm_15,Hpa-an,HPA-AN
+city_MAGWAY_MAGWAY,state_mm_11,Magway,MAGWAY
+city_AYEYAWADY_LABUTTA,state_mm_6,Labutta,LABUTTA
+city_YANGON_SOUTH YANGON,state_mm_7,South Yangon,SOUTH YANGON
+city_TANINTHARYI_KAWTHOUNG,state_mm_10,Kawthoung,KAWTHOUNG
+city_SHAN_LAUKINE,state_mm_8,Laukine,LAUKINE
+city_MAGWAY_THAYET,state_mm_11,Thayet,THAYET
+city_MAGWAY_GANGAW,state_mm_11,Gangaw,GANGAW
+city_AYEYAWADY_MYAUNGMYA,state_mm_6,Myaungmya,MYAUNGMYA
+city_AYEYAWADY_PATHEIN,state_mm_6,Pathein,PATHEIN
+city_MANDALAY_MANDALAY,state_mm_9,Mandalay,MANDALAY
+city_RAKHINE_KYAUKPYU,state_mm_5,Kyaukpyu,KYAUKPYU
+city_KAYIN_MYAWADY,state_mm_15,Myawady,MYAWADY
+city_CHIN_FALAM,state_mm_12,Falam,FALAM
+city_KAYIN_KAWKAREIK,state_mm_15,Kawkareik,KAWKAREIK
+city_SHAN_LINKHE',state_mm_8,Linkhe,LINKHE
+city_RAKHINE_THANDWE,state_mm_5,Thandwe,THANDWE
+city_SAGAING_HKAMTI,state_mm_13,Hkamti,HKAMTI
+city_KACHIN_PUTAO,state_mm_1,Putao,PUTAO
+city_SHAN_KUNLON,state_mm_8,Kunlon,KUNLON
+city_MAGWAY_MINBU,state_mm_11,Minbu,MINBU
+city_AYEYAWADY_PHYAPON,state_mm_6,Phyapon,PHYAPON
+city_KAYIN_PHARPON,state_mm_15,Pharpon,PHARPON
+city_SAGAING_SHWEBO,state_mm_13,Shwebo,SHWEBO
+city_BAGO_PYAY,state_mm_14,Pyay,PYAY
+city_MON_THATON,state_mm_4,Thaton,THATON
+city_NAYPYITAW_DEKKHINA (SOUTH),state_mm_2,Dekkhina(South),DEKKHINA (SOUTH)
+city_MANDALAY_YAME'THIN,state_mm_9,Yame'thin,YAME'THIN
+city_SAGAING_MONYWA,state_mm_13,Monywa,MONYWA
+city_SHAN_TAUNGGYI,state_mm_8,Taunggyi,TAUNGGYI
+city_SHAN_HOPAN,state_mm_8,Hopan,HOPAN
+city_SAGAING_TAMU,state_mm_13,Tamu,TAMU
+city_KAYAH_BAWLAKHE,state_mm_3,Bawlakhe,BAWLAKHE
+city_BAGO_THAYAWADY,state_mm_14,Thayawady,THAYAWADY
+city_SHAN_LASHIO,state_mm_8,Lashio,LASHIO
+city_TANINTHARYI_MYEIK,state_mm_10,Myeik,MYEIK

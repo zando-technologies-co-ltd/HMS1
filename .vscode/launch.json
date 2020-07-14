@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "pythonPath": "D:\\Odoo Server\\Odoo 13.0\\python\\python.exe",
+            "program": "D:\\Odoo Server\\Odoo 13.0\\server\\odoo-bin",
+            //your odoo configuration file path 
+            "args": [
+                "-c${workspaceRoot}\\odoo.conf"
+            ],
+            "cwd": "${workspaceRoot}",
+        }
+    ],
+}

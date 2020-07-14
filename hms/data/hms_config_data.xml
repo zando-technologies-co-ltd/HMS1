@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--pms.format -->
+        <record model="pms.format" id="pms_format_id1">
+          <field name="name">Guest Profile ID Format</field>
+          <field name="sample">P-property code-YYYY/xxxxx</field>
+          <field name="active">True</field>
+        </record>
+        <record model="pms.format" id="pms_format_id2">
+          <field name="name">Company Profile ID Format</field>
+          <field name="sample">C-property code-YYYY/xxxxx</field>
+          <field name="active">True</field>
+        </record>
+         <record model="pms.format" id="pms_format_id3">
+          <field name="name">Group Profile ID Format</field>
+          <field name="sample">G-property code-YYYY/xxxxx</field>
+          <field name="active">True</field>
+        </record>
+        <record model="pms.format" id="pms_format_id4">
+          <field name="name">Confirm ID Format</field>
+          <field name="sample">R-property code-YYYY/xxxxx</field>
+          <field name="active">True</field>
+        </record>
+        <!-- Guest Profile ID Format-->
+        <record model="pms.format.detail" id="pms_format_detail_id7">
+            <field name="format_id" ref="pms_format_id1"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">1</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">P-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">P-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id8">
+            <field name="format_id" ref="pms_format_id1"/>
+            <field name="name">Property</field>
+            <field name="position_order">2</field>
+            <field name="value_type">dynamic</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value">property code</field>
+            <field name="datetime_value"></field>
+            <field name="value">property code</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id9">
+            <field name="format_id" ref="pms_format_id1"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">3</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id10">
+            <field name="format_id" ref="pms_format_id1"/>
+            <field name="name">DateTime Char</field>
+            <field name="position_order">4</field>
+            <field name="value_type">datetime</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value">YYYY</field>
+            <field name="value">YYYY</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id11">
+            <field name="format_id" ref="pms_format_id1"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">5</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">/</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">/</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id12">
+            <field name="format_id" ref="pms_format_id1"/>
+            <field name="name">Digit Char</field>
+            <field name="position_order">6</field>
+            <field name="value_type">digit</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">6</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">5</field>
+        </record>
+        <!-- Company Profile ID Format-->
+        <record model="pms.format.detail" id="pms_format_detail_id13">
+            <field name="format_id" ref="pms_format_id2"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">1</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">C-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">C-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id14">
+            <field name="format_id" ref="pms_format_id2"/>
+            <field name="name">Property</field>
+            <field name="position_order">2</field>
+            <field name="value_type">dynamic</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value">property code</field>
+            <field name="datetime_value"></field>
+            <field name="value">property code</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id15">
+            <field name="format_id" ref="pms_format_id2"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">3</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id16">
+            <field name="format_id" ref="pms_format_id2"/>
+            <field name="name">DateTime Char</field>
+            <field name="position_order">4</field>
+            <field name="value_type">datetime</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value">YYYY</field>
+            <field name="value">YYYY</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id17">
+            <field name="format_id" ref="pms_format_id2"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">5</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">/</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">/</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id18">
+            <field name="format_id" ref="pms_format_id2"/>
+            <field name="name">Digit Char</field>
+            <field name="position_order">6</field>
+            <field name="value_type">digit</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">6</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">5</field>
+        </record>
+        <!-- Group Profile ID Format-->
+        <record model="pms.format.detail" id="pms_format_detail_id19">
+            <field name="format_id" ref="pms_format_id3"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">1</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">G-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">G-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id20">
+            <field name="format_id" ref="pms_format_id3"/>
+            <field name="name">Property</field>
+            <field name="position_order">2</field>
+            <field name="value_type">dynamic</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value">property code</field>
+            <field name="datetime_value"></field>
+            <field name="value">property code</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id21">
+            <field name="format_id" ref="pms_format_id3"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">3</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id22">
+            <field name="format_id" ref="pms_format_id3"/>
+            <field name="name">DateTime Char</field>
+            <field name="position_order">4</field>
+            <field name="value_type">datetime</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value">YYYY</field>
+            <field name="value">YYYY</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id23">
+            <field name="format_id" ref="pms_format_id3"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">5</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">/</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">/</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id24">
+            <field name="format_id" ref="pms_format_id3"/>
+            <field name="name">Digit Char</field>
+            <field name="position_order">6</field>
+            <field name="value_type">digit</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">6</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">5</field>
+        </record>
+        <!-- Confirmation ID Format-->
+        <record model="pms.format.detail" id="pms_format_detail_id1">
+            <field name="format_id" ref="pms_format_id4"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">1</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">R-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">R-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id2">
+            <field name="format_id" ref="pms_format_id4"/>
+            <field name="name">Property</field>
+            <field name="position_order">2</field>
+            <field name="value_type">dynamic</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value">property code</field>
+            <field name="datetime_value"></field>
+            <field name="value">property code</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id3">
+            <field name="format_id" ref="pms_format_id4"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">3</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">-</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">-</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id4">
+            <field name="format_id" ref="pms_format_id4"/>
+            <field name="name">DateTime Char</field>
+            <field name="position_order">4</field>
+            <field name="value_type">datetime</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value">YYYY</field>
+            <field name="value">YYYY</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id5">
+            <field name="format_id" ref="pms_format_id4"/>
+            <field name="name">Fix Char</field>
+            <field name="position_order">5</field>
+            <field name="value_type">fix</field>
+            <field name="fix_value">/</field>
+            <field name="digit_value">0</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">/</field>
+        </record>
+        <record model="pms.format.detail" id="pms_format_detail_id6">
+            <field name="format_id" ref="pms_format_id4"/>
+            <field name="name">Digit Char</field>
+            <field name="position_order">6</field>
+            <field name="value_type">digit</field>
+            <field name="fix_value"></field>
+            <field name="digit_value">6</field>
+            <field name="dynamic_value"></field>
+            <field name="datetime_value"></field>
+            <field name="value">5</field>
+        </record>
+        <record id="base.main_company" model="res.company">
+            <field name="name">Zando Technology</field>
+            <field name="partner_id" ref="base.main_partner"/>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="profile_id_format" ref="pms_format_id1"/>
+            <field name="cprofile_id_format" ref="pms_format_id2"/>
+            <field name="gprofile_id_format" ref="pms_format_id3"/>
+            <field name="confirm_id_format" ref="pms_format_id4"/>
+            <!-- <field name="image" type="base64" file="base/static/img/res_company_logo.png"/> -->
+            <!-- <field name="space_unit_code_format" ref="pms_format_id1"/>
+            <field name="pos_id_format" ref="pms_format_id2"/>
+            <field name="lease_agre_format_id" ref="pms_format_id3"/>
+            <field name="new_lease_term" ref="pms_leaseterms_id1"/>
+            <field name="extend_lease_term" ref="pms_leaseterms_id2"/>   -->   
+        </record>
+    </data>
+</odoo>
