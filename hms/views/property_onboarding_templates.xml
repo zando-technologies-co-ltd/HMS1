@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ONBOARDING STEPS -->
+    <template id="onboarding_property_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Property Data</t>
+            <t t-set="description">Setup your property's data.</t>
+            <t t-set="btn_text">Let's start!</t>
+            <t t-set="done_text">Step Completed!</t>
+            <t t-set="method" t-value="'action_open_hms_onboarding_property'" />
+            <t t-set="model" t-value="'property.property'" />
+            <t t-set="state" t-value="state.get('hms_onboarding_property_state')" />
+        </t>
+    </template>
+    <template id="onboarding_building_step">
+        <t t-call="base.onboarding_step">
+            <t t-set="title">Property Building</t>
+            <t t-set="description">Setup the buildings in your property.</t>
+            <t t-set="btn_text">Add a building</t>
+            <t t-set="done_text">Step Completed!</t>
+            <t t-set="method" t-value="'action_open_hms_onboarding_building'" />
+            <t t-set="model" t-value="'property.property'" />
+            <t t-set="state" t-value="state.get('hms_onboarding_building_state')" />
+        </t>
+    </template>
+    <!-- ONBOARDING PANELS -->
+    <template id="property_onboarding_panel" name="property.onboarding.panel">
+        <t t-call="base.onboarding_container">
+            <t t-set="classes" t-value="'o_onboarding_blue'"/>
+            <t t-set="bg_image" t-value="'/hms/static/src/img/account_invoice_onboarding_bg.jpg'"/>
+            <t t-set="close_method" t-value="'action_close_property_onboarding'"/>
+            <t t-set="close_model" t-value="'property.property'"/>
+            <t t-set="text_completed">Congratulations! You are all set.</t>
+            <t t-call="hms.onboarding_property_step" name="property_step" />
+            <t t-call="hms.onboarding_building_step" name="building_step" />
+            <t t-call="account.onboarding_sample_invoice_step" name="sample_invoice_step" />
+        </t>
+    </template>
+    <!-- PROPERTY FORM -->
+    <record id="hms_onboarding_property_form" model="ir.ui.view">
+        <field name="name">hms.property.onboarding.form</field>
+        <field name="model">property.property</field>
+        <field name="inherit_id" ref="hms.property_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <footer position="replace">
+                    <button name="action_save_onboarding_property_step" class="btn btn-primary" type="object" string="Apply"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_open_hms_onboarding_property" model="ir.actions.act_window">
+        <field name="name">Set your property data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">property.property</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hms_onboarding_property_form"/>
+        <field name="target">new</field>
+    </record>
+    <!-- BUILDING FORM -->
+    <record id="hms_onboarding_building_form" model="ir.ui.view">
+        <field name="name">hms.building.onboarding.form</field>
+        <field name="model">building.building</field>
+        <field name="inherit_id" ref="hms.building_view_form"/>
+        <field name="mode">primary</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <form position="inside">
+                <footer position="replace">
+                    <button name="action_save_onboarding_building_step" class="btn btn-primary" type="object" string="Create"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_open_hms_onboarding_building" model="ir.actions.act_window">
+        <field name="name">Set your building data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">building.building</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hms_onboarding_building_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

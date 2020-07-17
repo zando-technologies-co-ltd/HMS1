@@ -1,0 +1,4 @@
+id,ordinal_no,name,active
+charge_type_1,1,Fix,TRUE
+charge_type_2,2,Pax,TRUE
+charge_type_3,3,Percentage,TRUE

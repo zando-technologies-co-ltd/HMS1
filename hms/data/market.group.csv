@@ -1,0 +1,13 @@
+id,group_code,group_name
+1,AIR,Airline
+2,COR,Coporate
+3,EMB,Embassy
+4,FOC,Free of charge
+5,GOV,Government
+6,HFO,House Folio
+7,ING,International Non Gov organisation
+8,LSG,Long Stay Guest
+9,NGO ,Non Gov Organisation
+10,TAL,Travel Agent
+11,UN,United Nations
+12,WLK,Walk In

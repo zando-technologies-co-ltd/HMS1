@@ -1,48 +1,68 @@
 <odoo>
-    <data>
-        <!-- res.company -->
-        <record id="base.view_company_form" model="ir.ui.view">
-            <field name="name">res.company.form</field>
-            <field name="model">res.company</field>
-            <field name="arch" type="xml">
-                <form string="Company">
-                    <sheet>
-                        <field name="logo" widget="image"  class="oe_avatar"/>
-                        <div class="oe_title">
-                            <label for="name" class="oe_edit_only"/>
-                            <h1>
-                                <field name="name"/>
-                            </h1>
-                        </div>
-                        <group>
-                            <group>
-                                <field name="partner_id" string="Contact" readonly="1" required="0" groups="base.group_no_one"/>
-                                <label for="street" string="Address"/>
-                                <div class="o_address_format">
-                                    <field name="street" placeholder="Street..." class="o_address_street"/>
-                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                                    <field name="city" placeholder="City" class="o_address_city"/>
-                                    <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
-                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True}'/>
-                                </div>
-                                <field name="phone"/>
-                                <field name="email"/>
-                                <field name="website" string="Website" widget="url" placeholder="e.g. https://www.odoo.com"/>
-                            </group>
-                            <group>
-                                <field name="vat"/>
-                                <field name="company_registry"/>
-                                <field name="currency_id" options="{'no_create': True, 'no_open': True}" id="company_currency" context="{'active_test': False}"/>
-                                <field name="property_code_len"/>
-                                <field name="building_code_len"/>
-                                <field name="location_code_len"/>
-                            </group>
-                            <group name="social_media"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-    </data>
+  <data>
+  <!-- Res. Company-->
+  <record id="base.view_company_form" model="ir.ui.view">
+    <field name="name">res.company.form</field>
+    <field name="model">res.company</field>
+    <field name="arch" type="xml">
+        <form string="Company">
+          <sheet>
+            <field name="logo" widget="image"  class="oe_avatar"/>
+            <div class="oe_title">
+                <label for="name" class="oe_edit_only"/>
+                <h1>
+                    <field name="name"/>
+                </h1>
+            </div>
+                <group>
+                  <group>
+                    <field name="company_channel_type" placeholder="Company Type"/>
+                    <field name="partner_id" string="Contact" readonly="1" required="0" groups="base.group_no_one"/>
+                    <label for="street" string="Address"/>
+                    <div class="o_address_format">
+                        <field name="street" placeholder="Street..." class="o_address_street"/>
+                        <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                        <field name="city" placeholder="City" class="o_address_city" options='{"no_open": True}'/>
+                        <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True}'/>
+                        <field name="township" placeholder="Township" class="o_address_country" options="{'no_open':True}"/>
+                    </div>
+                  </group>
+                  <group>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="website" string="Website" widget="url" placeholder="e.g. https://www.odoo.com"/>
+                    <field name="vat"/>
+                    <field name="company_registry"/>
+                    <field name="currency_id" options="{'no_create': True, 'no_open': True}" id="company_currency" context="{'active_test': False}"/>
+                  </group>     
+                </group>
+                <notebook>
+                  <page string="Format Definition">
+                    <group name="format_difinition">
+                      <group>
+                        <field name="property_code_len"/>
+                        <field name="building_code_len"/>
+                        <field name="location_code_len"/>
+                        <field name="roomtype_code_len"/>
+                      </group>
+                      <group>
+                        <field name="profile_id_format" widget="selection"/>
+                        <field name="cprofile_id_format" widget="selection"/>
+                        <field name="gprofile_id_format" widget="selection"/>
+                        <field name="confirm_id_format" widget="selection"/>
+                      </group>
+                    <!-- <field name="cancellation_id_format" widget="selection"/> -->
+                    </group>
+                  </page>
+                  <page string="Social Media">
+                    <group name="social_media"/>
+                  </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+  </record>
+  </data>
 </odoo>

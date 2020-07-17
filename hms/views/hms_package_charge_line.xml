@@ -1,0 +1,93 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_appli_charge_type_form">
+      <field name="name">Package Charge Details Form</field>
+      <field name="model">hms.package.charge.line</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+           <div class="oe_button_box" name="button_box">
+              <button type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+              </button>
+            </div>
+            <div class="oe_title">
+                 <field name='property_id' invisible="1"/>
+                 <field name='package_id'/>
+                <label for="name" string="Package Charge Details"/>
+                <h1>
+                    <field name="name" placeholder="Package Charges Name"/>
+                </h1>
+            </div>
+            <group>
+                <group>
+                    <field name='transaction_id'/>
+                    <field name="charge_type_id" options="{'no_create': True, 'no_create_edit':True}"/>
+                    <field name="calculate_method_ids" invisible='1'/>
+                    <field name="calculation_method_id" domain="[('id', '=', calculate_method_ids)]" options="{'no_create_edit': True,'no_quick_create':True,'no_create':True,'no_open':True}"/>
+                    <!-- <field name="source_type_id" attrs="{'invisible':[('is_meter','!=',True)]}"/> -->
+                    <!-- <field name='use_formula' attrs="{'invisible':[('is_meter','!=',True)]}"/> -->
+                    <field name="rate" /> <!--attrs="{'invisible':['|',('is_meter','!=',True), ('use_formula','=',True)]}"-->
+                </group>
+                <group>
+                    <field name='is_apply_service'/>
+                    <field name='is_apply_tax'/>
+                    <field name='tax'/>
+                    <field name="billing_type"/>
+                    <!-- <field name='is_meter' invisible='1'/> -->
+                </group>
+            </group>
+            <!-- <notebook attrs="{'invisible':[('use_formula','!=',True)]}">
+              <page string="Unit Charges">
+                <field name="unit_charge_line">
+                  <tree editable="bottom">
+                    <field name="from_unit"/>
+                    <field name="to_unit"/>
+                    <field name="rate"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook> -->
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- Package Chare Line List View-->
+    <record model="ir.ui.view" id="view_appli_charge_type_tree">
+      <field name="name">Applicable Charge Type list</field>
+      <field name="model">hms.package.charge.line</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="transaction_id"/>
+          <field name="name"/>
+          <field name="charge_type_id"/>
+          <field name="calculation_method_id"/>
+          <field name='is_apply_tax'/>
+          <field name='tax'/>
+          <field name="billing_type"/>
+        </tree>
+      </field>
+    </record>
+    <!-- Package Charge Line Filter -->
+     <record model="ir.ui.view" id="view_appli_charge_type_filter">
+      <field name="name">Package Charge Line List list</field>
+      <field name="model">hms.package.charge.line</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+        </search>
+      </field>
+    </record>
+    <record id="action_appli_charge_type_all" model="ir.actions.act_window">
+        <field name="name">Applicable Charge Types</field>
+        <field name="res_model">hms.package.charge.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_appli_charge_type_tree"/> 
+    </record> 
+    <!-- <menuitem  id="appli_charge_type_menu_sub" 
+      name="Applicable Charge Type" 
+      parent="lease_management_menu_config" 
+      action="action_appli_charge_type_all"
+      sequence="10"/> -->
+    </data>
+</odoo>

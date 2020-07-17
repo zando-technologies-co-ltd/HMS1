@@ -1,142 +1,151 @@
 <odoo>
-    <data>
-        <record id="view_format_form" model="ir.ui.view">
-            <field name="name">Format Form</field>
-            <field name="model">pms.format</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                            </button>
-                        </div>
-                        <div class="oe_title">
-                            <label for="name" class="oe_edit_only" string="Format Name"/>
-                            <h1>
-                                <field name="name" placeholder="Format Name"/>
-                            </h1>
-                        </div>
-                        <group>
-                            <field name="sample" readonly="1"/>
-                        </group>
-                        <notebook>
-                            <page string="Add Format Detail">
-                                <field name="format_line_id" context="{'format_line_id': format_line_id}"/>
-                                    <!-- <form>
-                                        <sheet>
-                                            <group>
-                                                <group>
-                                                    <field name="position_order"/>
-                                                    <field name="value_type"/>
-                                                </group>
-                                                <group>
-                                                    <field name="value" invisible="1"/>
-                                                    <field name="fix_value" attrs="{'invisible' : [('value_type', '!=', 'fix')]}"/>
-                                                    <field name="digit_value" attrs="{'invisible' : [('value_type', '!=', 'digit')]}"/>
-                                                    <field name="dynamic_value" attrs="{'invisible' : [('value_type', '!=', 'dynamic')]}"/>
-                                                    <field name="datetime_value" attrs="{'invisible' : [('value_type', '!=', 'datetime')]}"/>
-                                                </group>
-                                            </group>
-                                        </sheet>
-                                    </form>
-                                    <tree>
-                                        <field name="position_order"/>
-                                        <field name="value_type" readonly="1"/>
-                                        <field name="value" readonly="1"/>
-                                    </tree> -->
-                            </page>
-                        </notebook>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <record id="view_format_tree" model="ir.ui.view">
-            <field name="name">Format List</field>
-            <field name="model">pms.format</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="sample"/>
-                    <field name="active"/>
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_format_filter" model="ir.ui.view">
-            <field name="name">Format List</field>
-            <field name="model">pms.format</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="name"/>
-                </search>
-            </field>
-        </record>
-
-        <record id="action_format_all" model="ir.actions.act_window">
-            <field name="name">Format</field>
-            <field name="res_model">pms.format</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_format_tree"/> 
-        </record>
-
-        <record id="view_format_detail_form" model="ir.ui.view">
-            <field name="name">Format Detail Form</field>
-            <field name="model">pms.format.detail</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
+  <data>
+    <record model="ir.ui.view" id="view_format_form">
+      <field name="name">Format Form</field>
+      <field name="model">pms.format</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+          <div class="oe_button_box" name="button_box">
+              <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+              </button>
+            </div>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Format Name"/>
+              <h1>
+                  <field name="name" placeholder="Format Name"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+              <field name="sample" 
+              readonly="1"
+              />
+              </group>
+              <group>
+              </group>
+            </group>
+            <notebook>
+                <page string="Add Format Detail" >
+                    <field name="format_line_id" context="{'format_line_id':format_line_id}">
+                        <form>
+                          <sheet>
                             <group>
-                                <field name="position_order"/>
-                                <field name="value_type"/>
-                            </group>
-                            <group>
-                                <field name="value" invisible="1"/>
-                                <field name="fix_value" attrs="{'invisible' : [('value_type', '!=', 'fix')]}"/>
-                                <field name="digit_value" attrs="{'invisible' : [('value_type', '!=', 'digit')]}"/>
-                                <field name="dynamic_value" attrs="{'invisible' : [('value_type', '!=', 'dynamic')]}"/>
-                                <field name="datetime_value" attrs="{'invisible' : [('value_type', '!=', 'datetime')]}"/>
-                            </group>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
+                              <group>
+                              <field name="position_order"/>
+                              <field name="value_type"/>         
+                              </group>
+                              <group>
+                              <field name="value" invisible='1'/>
+                              <field name="dynamic_value" attrs="{'invisible':[('value_type','!=','dynamic')]}"/>
+                              <field name="fix_value" attrs="{'invisible':[('value_type','!=','fix')]}"/>
+                              <field name="digit_value" attrs="{'invisible':[('value_type','!=','digit')]}"/>
+                              <field name="datetime_value" attrs="{'invisible':[('value_type','!=','datetime')]}"/>
+                              </group>
+                            </group>            
+                          </sheet>
+                        </form>
+                        <tree>
+                          <field name="position_order"/>
+                          <field name="value_type" readonly='1'/> 
+                          <field name="value" readonly='1'/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_format_tree">
+      <field name="name">Format list</field>
+      <field name="model">pms.format</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="sample"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+     <record model="ir.ui.view" id="view_format_filter">
+      <field name="name">Format list</field>
+      <field name="model">pms.format</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <!-- <field name="sample"/> -->
+        </search>
+      </field>
+    </record>
+     <record id="action_format_all" model="ir.actions.act_window">
+       <field name="name">Format</field>
+       <field name="res_model">pms.format</field>
+       <!-- <field name="view_type">form</field> -->
+       <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_format_tree"/> 
+    </record> 
+    <record model="ir.ui.view" id="view_format_detail_form">
+      <field name="name">Format Detail Form</field>
+      <field name="model">pms.format.detail</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+              <field name="position_order"/>
+              <field name="value_type"/>         
+              </group>
+              <group>
+              <field name="value" invisible='1'/>
+              <field name="dynamic_value" attrs="{'invisible':[('value_type','!=','dynamic')]}"/>
+              <field name="fix_value" attrs="{'invisible':[('value_type','!=','fix')]}"/>
+              <field name="digit_value" attrs="{'invisible':[('value_type','!=','digit')]}"/>
+              <field name="datetime_value" attrs="{'invisible':[('value_type','!=','datetime')]}"/>
+              </group>
+            </group>            
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_format_detail_tree">
+      <field name="name">Format Detail list</field>
+      <field name="model">pms.format.detail</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="position_order"/>
+            <field name="value_type"/>  
+            <field name="value"/> 
+        </tree>
+      </field>
+    </record>
+     <record model="ir.ui.view" id="view_format_detail_filter">
+      <field name="name">Format Detail list</field>
+      <field name="model">pms.format.detail</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="value_type"/>
+            <field name="value"/>    
+        </search>
+      </field>
+    </record>
+     <record id="action_format_detail_all" model="ir.actions.act_window">
+       <field name="name">Format</field>
+       <field name="res_model">pms.format.detail</field>
+       <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_format_detail_tree"/> 
+    </record> 
 
-        <record id="view_format_detail_tree" model="ir.ui.view">
-            <field name="name">Format Detail list</field>
-            <field name="model">pms.format.detail</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="position_order"/>
-                    <field name="value_type"/>  
-                    <field name="value"/> 
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_format_detail_filter" model="ir.ui.view">
-            <field name="name">Format Detail list</field>
-            <field name="model">pms.format.detail</field>
-            <field name="arch" type="xml">
-                <search>
-                    <field name="value_type"/>
-                    <field name="value"/>    
-                </search>
-            </field>
-        </record>
-
-        <record id="action_format_detail_all" model="ir.actions.act_window">
-            <field name="name">Format</field>
-            <field name="res_model">pms.format.detail</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_format_detail_tree"/> 
-        </record> 
-
-        <menuitem id="sub_format_detail_menu" name="Format Detail" parent="hms_menu_config" action="action_format_detail_all" sequence="40"/>
-        <menuitem id="sub_rule_menu_root" name="Format" parent="hms_menu_config" action="action_format_all" sequence="50"/>
-
-    </data>
+     <menuitem  id="sub_format_detail_menu" 
+      name="Format Detail" 
+      parent="hms_menu_setting"
+      action="action_format_detail_all"
+      sequence="99"/>
+     <menuitem  id="sub_rule_menu_root" 
+      name="Format" 
+      parent="hms_menu_setting"
+      action="action_format_all"
+      sequence="98"/>
+  </data>
 </odoo>

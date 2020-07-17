@@ -1,0 +1,17 @@
+id,rsvntype_id,rsvn_code,rsvn_status
+1,Confirmed,ALT,Allotment
+2,Confirmed,BLD,Block Definite
+3,Confirmed,BLT,Block Tentative
+4,Confirmed,COM,Complementary
+5,Confirmed,DEF,Definite
+6,Confirmed,GCO,Guarantee By Company
+7,Confirmed,GTC,Guarantee By Credit Card
+8,Confirmed,GTM,Guarantee By Email
+9,Confirmed,GTP,Guarantee By Deposit
+10,Confirmed,GTR,Guarantee By Letter
+11,Confirmed,GTV,Guarantee By Voucher 
+12,Confirmed,HSE,Hoouse Use
+13,Unconfirmed,NGT,Non Guarantee
+14,Confirmed,NOF,Non Refund
+15,Unconfirmed,TEN,Tentative
+16,Unconfirmed,WTL,Waiting List

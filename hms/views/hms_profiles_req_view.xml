@@ -1,0 +1,144 @@
+<odoo>
+    <data>
+        <!-- Guest Nationality -->
+        <record id="hms_nationality_view_form" model="ir.ui.view">
+            <field name="name">hms.nationality.view.form</field>
+            <field name="model">hms.nationality</field>
+            <field name="arch" type="xml">
+                <form string="Guest Nationality">
+                    <sheet>
+                        <h2>Nationality</h2>
+                        <br></br>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hms_nationality_view_list" model="ir.ui.view">
+            <field name="name">hms.nationality.view.list</field>
+            <field name="model">hms.nationality</field>
+            <field name="arch" type="xml">
+                <tree string="Guest Nationality">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hms_nationality_action_window" model="ir.actions.act_window">
+            <field name="name">Guest Nationality</field>
+            <field name="res_model">hms.nationality</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Guest Passport -->
+        <record id="hms_passport_view_form" model="ir.ui.view">
+            <field name="name">hms.passport.view.form</field>
+            <field name="model">hms.passport</field>
+            <field name="arch" type="xml">
+                <form string="Guest Passport">
+                    <sheet>
+                        <h2>Guest Passport</h2>
+                        <br></br>
+                        <group>
+                            <group>
+                                <field name="active" widget="boolean_toggle"/>
+                                <field name="profile_id"/>
+                                <field name="passport"/>
+                                    <field name="issue_date" />
+                                    <field name="expire_date"/>
+                                    <field name="country_id"/>
+                                    <field name="nationality"/>
+                                    <field name="note" string="Notes" placeholder="Internal Notes..."/>
+                            </group>
+                            <group>
+                                <label for="image1" string="Image"/>
+                                <div class="o_image_format">
+                                    <field name="image1" widget="image" class="float-left oe_avatar"/>
+                                    <field name="image2" widget="image" class="float-left oe_avatar"/>
+                                    <field name="image3" widget="image" class="float-left oe_avatar"/>
+                                    <field name="image4" widget="image" class="float-left oe_avatar"/>
+                                    <field name="active" invisible="1"/>
+                                </div>
+                                <!-- <field name="image1" string="Image" widget="many2many_binary"/> -->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hms_passport_view_list" model="ir.ui.view">
+            <field name="name">hms.passport.view.list</field>
+            <field name="model">hms.passport</field>
+            <field name="arch" type="xml">
+                <tree string="Guest Passport">
+                    <field name="active"/>
+                    <field name="passport"/>
+                    <field name="issue_date"/>
+                    <field name="expire_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hms_passport_action_window" model="ir.actions.act_window">
+            <field name="name">Guest Passport</field>
+            <field name="res_model">hms.passport</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Contract -->
+        <record id="hms_contract_view_form" model="ir.ui.view">
+            <field name="name">hms.contract.view.form</field>
+            <field name="model">hms.contract</field>
+            <field name="arch" type="xml">
+                <form string="Contract">
+                    <sheet>
+                        <h2>Contract</h2>
+                        <br></br>
+                        <group>
+                            <field name="profile_id"/>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="file"/>
+                            <field name="note" string="Note" placeholder="Internal notes..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hms_contract_view_list" model="ir.ui.view">
+            <field name="name">hms.contract.view.list</field>
+            <field name="model">hms.contract</field>
+            <field name="arch" type="xml">
+                <tree string="Contract">
+                    <field name="profile_id"/>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hms_contract_action_window" model="ir.actions.act_window">
+            <field name="name">Contract</field>
+            <field name="res_model">hms.contract</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem  id="natioanlity_menu" name="Nationality" parent="country_menu_root" action="hms_nationality_action_window" sequence="20"/>
+        <menuitem id="guest_profile_menu" name="Guest Profile" parent="hms_menu_setting" sequence="6"/>
+            <!-- <menuitem id="guest_country_menu" name="Guest Country" parent="guest_profile_menu" sequence="2" action="hms_country_action_window"/>
+            <menuitem id="guest_nationality_menu" name="Guest Nationality" parent="guest_profile_menu" sequence="3" action="hms_nationality_action_window"/> -->
+            <menuitem id="guest_passport_menu" name="Guest Passport" parent="guest_profile_menu" sequence="4" action="hms_passport_action_window"/>
+      
+        <menuitem id="contract_menu" name="Contract" parent="hms_menu_setting" sequence="7" action="hms_contract_action_window"/>
+
+    </data>
+</odoo>

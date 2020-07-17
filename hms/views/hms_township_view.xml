@@ -55,15 +55,15 @@
        <field name="view_mode">tree,form</field>
        <field name="view_id" ref="view_township_tree"/> 
     </record>
-    <menuitem  id="state_menu_root" 
+    <!-- <menuitem  id="state_menu_root" 
       name="State" 
       parent="hms_menu_config"
       action="base.action_country_state"
-      sequence="20"/>
-    <menuitem  id="township_menu_root" 
+      sequence="20"/> -->
+      <menuitem  id="township_menu_root" 
       name="Township" 
-      parent="hms_menu_config"
+      parent="country_menu_root"
       action="action_township_all"
-      sequence="21"/>
+      sequence="40"/>
   </data>
 </odoo>

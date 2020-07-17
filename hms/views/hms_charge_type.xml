@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_charge_type_form">
+            <field name="name">Charge Type Form</field>
+            <field name="model">hms.charge_types</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Charge Type"/>
+                            <h1>
+                                <field name="name" placeholder="Charge Type"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="calculate_method_ids" widget="many2many_tags"/>
+                                <field name="ordinal_no"/> 
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Tree View for Charge Type -->
+        <record model="ir.ui.view" id="view_charge_type_tree">
+            <field name="name">Charge Type list</field>
+            <field name="model">hms.charge_types</field>
+            <field name="arch" type="xml">
+                <tree>
+                <field name="name"/>
+                <field name="calculate_method_ids" widget="many2many_tags"/>
+                <field name="ordinal_no"/>
+                </tree>
+            </field>
+        </record>
+        <!--Tree View Filter -->
+        <record model="ir.ui.view" id="view_charge_type_filter">
+            <field name="name">Charge Type list</field>
+            <field name="model">hms.charge_types</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+        <!-- Action View for Charge Type-->
+        <record id="action_charge_type_all" model="ir.actions.act_window">
+            <field name="name">Charge Types</field>
+            <field name="res_model">hms.charge_types</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_charge_type_tree"/> 
+        </record> 
+    <menuitem  id="charge_type_menu_sub" name="Charge Type" parent="hms_menu_setting" action="action_charge_type_all" sequence="10"/>
+    </data>
+</odoo>

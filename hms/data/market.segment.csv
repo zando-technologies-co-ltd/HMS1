@@ -1,0 +1,17 @@
+id,market_code,market_name,group_id,options
+1,AIR,Airline,1,O
+2,COR,Coporate,2,O
+3,EMB,Embassy,3,O
+4,COM,Complementary,4,C
+5,HSE,House Use,4,H
+6,GOV,Government,5,O
+7,HFO,House Folio,6,O
+8,ING,Internal Non Gov Organisation,7,O
+9,LSG,Long Stay Guest,8,O
+10,NGO,Non Gov Organisation,9,O
+11,OTA,Online Travel Agent,10,O
+12,TAL ,Travel Agent Local,10,O
+13,TAO,Travel Agent Oversea,10,O
+14,UN,United Nations,11,O
+15,WIF,Walk In Foreigner,12,W
+16,WIL,Walk In Local,12,W

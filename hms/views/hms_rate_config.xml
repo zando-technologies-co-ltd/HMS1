@@ -1,0 +1,83 @@
+<odoo>
+    <data>
+        <!-- Rate Categories Form View -->
+        <record id="rate_categories_view_form" model="ir.ui.view">
+            <field name="name">rate.categories.form</field>
+            <field name="model">rate.categories</field>
+            <field name="arch" type="xml">
+                <form string="Rate Categories">
+                <header>
+                    <field name="is_rate_category" invisible="1"/>
+                    <button string="Terminate" name="%(action_terminate_wiz)d" type="action" class="btn btn-primary" context="{'default_end_date' : terminate_end_date}" attrs="{'invisible': [('is_rate_category', '!=', True)]}">
+                            <i class="fa fa-paint-brush"></i>
+                    </button>
+                </header>
+                <sheet>
+                    <field name="terminate_end_date" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <separator string="Rate Categories" colspan="4" />
+                    <div class="o_address_format" >
+                        <label for='code' string="Code" style="width:6%%"/>
+                        <field name="code" default_focus="1" placeholder="Code" style="width:20%%"/>
+                        <label for="categories" string=" " style="width:1.5%%"/>
+                        <label for="categories" string="Description" style="width:6%%"/>
+                        <field name="categories" placeholder="Description" style="width:20%%"/>  
+                    </div>
+                    <div class="o_address_format">
+                        <label for="start_date" string="Start Date" style="width:6%%"/>                                                                   
+                        <field name="start_date" style="width:20%%"/>
+                        <label for="end_date" string=" " style="width:1.5%%"/>
+                        <label for="end_date" string="End Date" style="width:6%%"/>
+                        <field name="end_date" style="width:20%%"/>
+                    </div>
+                    <group>
+                        <field name="rate_header_ids">
+                            <tree string="Rate Code" editable="bottom">
+                                <field name="rate_category_id" invisible="1"/>
+                                <field name="rate_code"/>
+                                <field name="ratecode_name"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="property_ids" widget="many2many_tags"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Rate Categories List View -->
+        <record id="rate_categories_view_list" model="ir.ui.view">
+            <field name="name">Rate Categories List</field>
+            <field name="model">rate.categories</field>
+            <field name="arch" type="xml">
+                <tree string="Rate Categories">
+                    <field name="sequence" widget="handle"/>
+                    <field name="code"/>
+                    <field name="categories"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- action of Rate Categories -->
+        <record id="rate_categories_action_window" model="ir.actions.act_window">
+            <field name="name">Rate Categories</field>
+            <field name="res_model">rate.categories</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem  id="ratecode_menu_root_config" 
+        name="Rate Code" 
+        parent="hms_menu_config"
+        sequence="3"/>
+            <menuitem  id="rate_categories_config" 
+                name="Rate Categories" 
+                parent="ratecode_menu_root_config"
+                action="rate_categories_action_window"
+                sequence="1"/>
+    </data>
+</odoo>

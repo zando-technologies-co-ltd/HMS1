@@ -2,19 +2,16 @@
   <data>
 
     <!-- Top menu item -->
-
-    <menuitem id="hotel_menu_root" name="HMS-System" sequence="5"/>
+    <menuitem id="hotel_menu_root" web_icon="HMS,static/description/icon.png" name="HMS-System" sequence="5"/>
 
     <!-- menu categories -->
-    
-    <menuitem id="hotel_menu_hms" name="Property Configuration" parent="hotel_menu_root" sequence="1"/> 
-    <menuitem id="hms_menu_config" name="Settings" parent="hotel_menu_root" sequence="9"/>
+    <menuitem id="hotel_menu_hms" name="Property Managment" parent="hotel_menu_root" sequence="1"/>
+    <menuitem id="hms_menu_rsvn" name="Reservation" parent="hotel_menu_root" sequence="2"/>
+    <menuitem id="hms_menu_report" name="Reports" parent="hotel_menu_root" sequence="3"/>
+    <menuitem id="hms_menu_config" name="Settings" parent="hotel_menu_root" sequence="8"/>
+    <menuitem id="hms_menu_setting" name="Configuration" parent="hotel_menu_root" sequence="9"/>
 
-    <!-- <menuitem id="hotel_menu_1" name="Hotel Configuration" parent="hotel_menu_root" sequence="1"/> 
-    <menuitem id="hotel_menu_2" name="Room Configuration" parent="hotel_menu_root" sequence="2"/>
-    <menuitem id="hotel_menu_3" name="Package Configuration" parent="hotel_menu_root" sequence="3"/>
-    <menuitem id="hotel_menu_4" name="Guest" parent="hotel_menu_root" sequence="4"/> -->
-      
+
     <!-- ========== Hotel Property Setup ========== -->
     <!-- Property Setup Form View -->
     <record id="property_view_form" model="ir.ui.view">
@@ -23,54 +20,82 @@
       <field name="priority" eval="1"/>
       <field name="arch" type="xml">
         <form string="Property">
-        <header>
-          <field name="is_property" invisible='1'/>
-            <button string="Package" name="action_package" type="object" context="{'default_property_id' : id}"  class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}"><i class="fa fa-paint-brush"></i></button>
-            <button string="Weekends" name="action_weekend" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}"><i class="fa fa-paint-brush"></i></button>
-            <button string="Special Days" name="action_specialday" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}"><i class="fa fa-paint-brush"></i></button>
-            <button string="Rate Code" name="action_ratecode" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}"><i class="fa fa-paint-brush"></i></button>
-            <button string="Transaction" name="action_transaction" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}"><i class="fa fa-paint-brush"></i></button>
-            <button string="Credit Limit" name="action_creditlimit" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}"><i class="fa fa-paint-brush"></i></button>
-        </header>
+          <header>
+            <field name='is_property' invisible='1'/>
+            <button string="Package Group" name="action_package_group" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <button string="Package" name="action_newpackage" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <button string="Rate Code" name="action_newratecode" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <!-- <button string="Package" name="action_package" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button> -->
+            <button string="Weekends" name="action_weekend" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <button string="Special Days" name="action_specialday" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <!-- <button string="Rate Code" name="action_ratecode" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button> -->
+            <button string="Allotment" name="action_allotment" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <button string="Transaction" name="action_transaction" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+            <button string="Credit Limit" name="action_creditlimit" type="object" context="{'default_property_id' : id}" class="btn btn-primary" attrs="{'invisible': [('is_property', '=', False)]}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
+          </header>
           <sheet>
+            <field name="active" invisible="1"/>
+            <field name="is_manual" invisible="1"/>
+            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_button_box" name="button_box">
-              <button name="action_building_count"
-                  type="object"
-                  class="oe_stat_button"
-                  icon="fa-building">
+              <button name="action_building_count" type="object" class="oe_stat_button" icon="fa-building">
                 <field name="building_count" widget='statinfo'/>
               </button>
-              <button name="action_room_count" type="object" class="oe_stat_buttton" icon="fa-trello">
+              <button name="action_room_count" type="object" class="oe_stat_button" icon="fa-trello">
                 <field name="room_count" widget='statinfo'/>
               </button>
               <button name="action_room_type_count" type="object" class="oe_stat_button" icon="fa-windows">
                 <field name="roomtype_count" widget='statinfo'/>
               </button>
             </div>
-            <separator colspan='1' string="Main Data Property"/>
+            <separator colspan='1' string="Property"/>
             <field name="logo" widget="image" class="oe_avatar"/>
             <div class="oe_title">
-              <label for="name" string="Hotel Name"/>
-              <h1><field name="name" placeholder="Hotel Name" style="width:80%%"/></h1>
-              <label for ="code" string="Hotel ID code"/>
-              <h4><field name="code" style="width:80%%"/></h4>
-              <label for="hotelgroup_id" string="Hotel Group" />
-              <h4><field name="hotelgroup_id" style="width:80%%"/></h4>
+              <h3>
+                <field name="name" placeholder="Hotel Name" style="width:73%%"/>
+              </h3>
+              <!-- s -->
+              <h4>
+                <field name="code" style="width:73%%"/>
+              </h4>
+              <h4>
+                <field name="hotelgroup_id" style="width:76%%"/>
+              </h4>
             </div>
             <newline/>
             <group>
-              <separator colspan='4' string="Property Information"/>
+              <separator colspan='4' string="Property Information" />
               <group>
-                <field name="currency_id" string="Currency" required="1" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                <field name="currency_id" string="Currency" required="1" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" />
                 <label for="address1" string="Address"/>
                 <div class="o_address_format">
                   <field name="address1" placeholder="Street..." class="o_address_street"/>
                   <field name="address2" placeholder="Street 2..." class="o_address_street"/>
                   <field name="country_id" placeholder="Country" class="o_address_country" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>
-                  <field name="city_id" placeholder="City" class="o_address_city" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>
                   <field name="state_id" class="o_address_state" placeholder="State" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}"/>
+                  <field name="city_id" placeholder="City" class="o_address_city" options="{'no_open':True}"/>
                   <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                  <field name="township" placeholder="Township" class="o_address_country" options="{'no_create':True,'no_creste_edit':True, 'no_open':True}"/>
+                  <field name="township" placeholder="Township" class="o_address_country" options="{'no_open':True}"/>
                 </div>
                 <label for="image" string="Image"/>
                 <div>
@@ -78,40 +103,109 @@
                 </div>
               </group>
               <group>
-              <newline/>
+                <newline/>
+                <field name="timezone"/>
+                <field name="system_date"/>
+                <field name="ci_time" widget="float_time"/>
+                <field name="co_time" widget="float_time"/>
+                <field name="night_audit"/>
                 <field name="rating" widget="priority"/>
                 <field name="phone" placeholder="Eg. 09123456789....."/>
                 <field name="fax" placeholder="Eg. 01-123456"/>
                 <field name="email" placeholder="example@company.com....."/>
                 <field name="website" widget="url" placeholder="Eg. www.company.com....."/>
                 <field name="sociallink" widget="url" placeholder="Eg. Facebook Link ....."/>
+                <label for="availability" string="Availability"/>
+                <div class="o_address_format">
+                  <field name="availability" style="width:33%%"/>
+                  <field name="high_occupancy" style="width:33.5%%"/>
+                  <field name="low_occupancy" style="width:33.5%%"/>
+                </div>
+                <label for="roomqty" string="Total / Dummy Rooms"/>
+                <div class="o_address_format">
+                  <field name="roomqty" style="width:16.5%%"/>
+                  <!-- <label for="dummy_rooms" string=" " style="width:0.01em"/> -->
+                  <field name="dummy_rooms" style="width:16.5%%" force_save="1"/>
+                </div>
               </group>
               <field name="package_ids" context="{'default_property_id' : id}" invisible="1"/>
               <field name="transaction_ids" context="{'default_property_id' : id}" invisible="1"/>
               <field name="creditlimit_ids" context="{'default_property_id' : id}" invisible="1"/>
-            <newline/>
+              <newline/>
             </group>
             <notebook colspan="5">
               <page string='Contact Information' autofocus="autofocus">
-                <field name="contact_ids" context="{'default_company_type' : 'person'}" mode="kanban"/>
-              </page>
-              <page string='Bank Information'>
-                <field name="bankinfo_ids" attrs="{'invisible': [('is_property', '=', False)]}" mode="kanban"/>
+                <!-- <field name="contact_ids" context="{'default_company_type' : 'preson','default_is_from_hms':True }" mode="kanban"/> -->
+                <field name="contact_ids" context="{'form_view_ref':'hms.view_partner_contact_form', 'default_company_type' : 'person'}" mode="kanban"/>
               </page>
               <page string='Buildings (or) Zone'>
-                <field name="building_ids"/>
-              </page> 
+                <div>
+                  <field name="building_ids">
+                    <tree string="Building" limit="10">
+                      <field name="sequence" widget="handle"/>
+                      <field name="building_name"/>
+                      <field name="building_type"/>
+                      <field name="location_ids" widget="many2many_tags"/>
+                      <field name="building_location" optional="hide"/>
+                    </tree>
+                  </field>
+                </div>
+              </page>
               <page string='Room Type'>
-                <field name="roomtype_ids"/> 
+                <h2> Room Type</h2>
+                <field name="roomtype_ids" context="{'property_id':active_id}">
+                  <tree string="Room Type List" limit='10'>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="fix_type"/>
+                    <field name="bed_type" attrs="{'invisible': [('fix_type','=', True)]}" widget="many2many_tags"/>
+                    <field name="totalroom"/>
+                  </tree>
+                </field>
               </page>
               <page string='Room Number'>
-                <field name="propertyroom_ids" context="{'default_property_id' : id}"/> 
-              </page>
-              <page string='Room Type Count'>
+                <group>
+                  <div>
+                    <field name="propertyroom_ids" context="{'default_property_id' : id}">
+                      <tree limit="10">
+                        <field name="is_hfo" invisible="1"/>
+                        <field name="is_propertyroom" invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="room_no" optional="show"/>
+                        <field name="building_id" optional="show"/>
+                        <field name="roomtype_id" optional="show"/>
+                        <field name="bedtype_id" optional="show"/>
+                        <field name="roomlocation_id" optional="show"/>
+                        <field name="room_bedqty" optional="show"/>
+                        <field name="room_extension" optional="show"/>
+                        <field name="roomview_ids" optional="hide"/>
+                        <button string="Copy" name="%(action_roomno_copy_wiz)d" type="action" class="btn btn-primary" context="{'default_property_id' : id}" attrs="{'invisible': [('is_hfo', '=', True)]}">
+                          <i class="fa fa-paint-brush"></i>
+                        </button>
+                      </tree>
+                    </field>
+                  </div>
+                </group>
               </page>
               <page string='Market Segment'>
                 <h2>Market Segment</h2>
-                <field name="market_ids"/>
+                <field name="market_ids">
+                  <tree string="Market Segment" limit='10'>
+                    <field name="sequence" widget="handle"/>
+                    <field name="market_code" />
+                    <field name="market_name" />
+                    <field name="group_id"/>
+                    <field name="options"/>
+                  </tree>
+                </field>
+              </page>
+              <page string='Bank Information'>
+                <!-- <field name="bankinfo_ids" attrs="{'invisible': [('is_property', '=', False)]}" context="{'default_property_id' : id}" mode="kanban"/> -->
+                <field name="bankinfo_ids" attrs="{'invisible': [('is_property', '=', False)]}" mode="kanban"/>
+              </page>
+              <page string='Hotel License'>
+                <field name="roomqty"/>
+                <field name="property_license"/>
               </page>
               <page string="Configuration">
                 <group>
@@ -119,13 +213,27 @@
                     <field name="property_code_len"/>
                     <field name="building_code_len"/>
                     <field name="location_code_len"/>
+                    <field name="roomtype_code_len"/>
                   </group>
+                  <!-- <group string="Define Lease Terms">
+                    <field name="new_lease_term" widget="selection"/>
+                    <field name="extend_lease_term" widget="selection"/>
+                    <field name="terminate_days"/>
+                    <field name="extend_count"/>
+                  </group> -->
                   <group string="Format Definition">
-                    <field name="confirm_id_format" widget="selection"/>
                     <field name="profile_id_format" widget="selection"/>
                     <field name="cprofile_id_format" widget="selection"/>
                     <field name="gprofile_id_format" widget="selection"/>
+                    <field name="confirm_id_format" widget="selection"/>
+                    <!-- <field name="cancellation_id_format" widget="selection"/> -->
                   </group>
+                  <!-- <group string="Define Rent Schedule Type">
+                    <field name="rentschedule_type"/>
+                  </group>
+                   <group string="API Information">
+                    <field name="api_integration" string="MIMS Integration"/>
+                  </group> -->
                 </group>
               </page>
               <page string='Internal Notes'>
@@ -133,10 +241,12 @@
               </page>
             </notebook>
           </sheet>
-          <div class="oe_chatter">
+          <footer>
+            <div class="oe_chatter">
               <field name="message_follower_ids" widget="mail_followers"/>
               <field name="message_ids" widget="mail_thread"/>
-          </div>
+            </div>
+          </footer>
         </form>
       </field>
     </record>
@@ -149,6 +259,7 @@
         <tree string="Property">
           <field name="name"/>
           <field name="code"/>
+          <field name="timezone"/>
           <field name="city_id" optional="show"/>
           <field name="state_id" optional="hide"/>
           <field name="country_id" optional="show"/>
@@ -161,8 +272,107 @@
       </field>
     </record>
 
-    <!-- Kanban View of Property -->  
+    <!-- Kanban View of Property -->
     <record id="property_view_kanban" model="ir.ui.view">
+      <field name="name">property.view.kanban</field>
+      <field name="model">property.property</field>
+      <field name="arch" type="xml">
+        <kanban class="oe_background_grey o_kanban_dashboard o_property_kanban">
+          <field name="id"/>
+          <field name="logo"/>
+          <field name="hotelgroup_id"/>
+          <field name="name"/>
+          <field name="code"/>
+          <field name="city_id"/>
+          <field name="country_id"/>
+          <field name="phone"/>
+          <field name="email"/>
+          <field name="website"/>
+          <field name="rating"/>
+          <field name="timezone"/>
+          <field name="system_date"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click">
+                <div class="o_kanban_image">
+                  <img t-att-src="kanban_image('property.property','logo',record.id.raw_value)" alt="image"/>
+                  <field name="system_date"/>
+                </div>
+                <!-- <div class="container o_kanban_card_content">
+                  <div class="row o_kanban_card_upper_content">
+                      <div class="col-5 o_kanban_primary_left" name="to_replace_in_sale_crm">
+                          <button type="object" class="btn btn-primary" name="action_primary_channel_button">Company Profile</button>
+                      </div>
+                  </div>
+                </div> -->
+                <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                  <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                    <span class="fa fa-bars fa-lg" />
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <t t-if="widget.editable">
+                      <li>
+                        <a type="edit">Edit</a>
+                      </li>
+                    </t>
+                    <t t-if="widget.deletable">
+                      <li>
+                        <a type="delete">Delete</a>
+                      </li>
+                    </t>
+                    <t>
+                      <li>
+                        Profile
+                        <ul>
+                          <li>
+                            <a type="object" name="action_companyprofile" context="{'default_property_id' : id}">Company Profile</a>
+                          </li>
+                          <li>
+                            <a type="object">Guest Profile</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </t>
+                    <!-- <li>
+                        <ul class="oe_kanban_colorpicker" data-field="color" />
+                    </li> -->
+                  </ul>
+                </div>
+                <div class="oe_kanban_details">
+                  <div>
+                    <field name="name"/>
+                  </div>
+                  <div>
+                    <field name="hotelgroup_id"/>
+                  </div>
+                  <div>
+                    <field name="timezone"/>
+                  </div>
+                  <div>
+                    <field t-if="record.city_id.raw_value" name="city_id"/>
+                    <field t-if="record.country_id.raw_value" name="country_id"/>
+                  </div>
+                  <div t-if="record.phone.raw_value">
+                    <field name="phone"/>
+                  </div>
+                  <div t-if="record.email.raw_value">
+                    <field name="email"/>
+                  </div>
+                  <div t-if="record.website.raw_value">
+                    <field name="website"/>
+                  </div>
+                  <div t-if="record.rating.raw_value">
+                    <field name="rating" widget='priority'/>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- <record id="property_view_kanban" model="ir.ui.view">
       <field name="name">property.view.kanban</field>
       <field name="model">property.property</field>
       <field name="arch" type="xml">
@@ -183,6 +393,7 @@
               <div class="oe_kanban_global_click">
                 <div class="o_kanban_image">
                   <img t-att-src="kanban_image('property.property','logo',record.id.raw_value)" alt="image"/>
+                  
                 </div>
                 <div class="oe_kanban_details">
                   <div><field name="name"/></div>
@@ -193,7 +404,7 @@
                   </div>
                   <div t-if="record.phone.raw_value"><field name="phone"/></div>
                   <div t-if="record.email.raw_value"><field name="email"/></div>
-                  <div t-if="record.website.raw_value"><field  name="website"/></div>
+                  <div t-if="record.website.raw_value"><field name="website"/></div>
                   <div t-if="record.rating.raw_value"><field name="rating" widget='priority'/></div>
                 </div>
               </div>
@@ -201,9 +412,10 @@
           </templates>
         </kanban>
       </field>
-    </record>
+    </record> -->
 
-    <record id="view_pms_properites_filter" model="ir.ui.view">
+    <!-- Kanban View of Property -->
+    <record model="ir.ui.view" id="view_pms_properites_filter">
       <field name="name">Properties Filter</field>
       <field name="model">property.property</field>
       <field name="arch" type="xml">
@@ -231,346 +443,6 @@
       <field name="view_id" ref="property_view_kanban"/>
     </record>
 
-    <!-- res.company inherit form view -->
-    <!-- <record id="res_company_form_view_inherit" model="ir.ui.view">
-      <field name="name">res.company.form.view.inherit</field>
-      <field name="model">res.company</field>
-      <field name="inherit_id" ref="base.view_company_form"/>
-      <field name="arch" type="xml">
-        <field name="currency_id" position="attributes">
-          <attribute name="invisible">True</attribute>
-        </field>
-        <field name="parent_id" position="attributes">
-          <attribute name="invisible">True</attribute>
-        </field>
-      </field>
-    </record> -->
-
-    <!-- Form View of Contact -->
-    <!-- <record id="base.view_partner_form" model="ir.ui.view">
-      <field name="name">res.partner.form</field>
-      <field name="model">res.partner</field>
-      <field name="arch" type="xml">
-        <form string="Contacts">
-          <sheet>
-            <field name="type" required="1" widget="radio" options="{'horizontal': true}"/>
-            <field name="parent_id" invisible="1"/>
-            <br></br>
-            <group col="12">
-              <group colspan="5">
-                <field name="name" string="Contact Name" attrs="{'required' : [('type', '=', 'contact')]}"/>
-                <field name="title" placeholder="e.g. Mr." attrs="{'invisible': [('type','!=', 'contact')]}"/>
-                <field name="function" placeholder="e.g. Sales Director" attrs="{'invisible': [('type','!=', 'contact')]}"/>
-                <label for="street" string="Address" attrs="{'invisible': [('type','=', 'contact')]}"/>
-                <div attrs="{'invisible': [('type','=', 'contact')]}">
-                  <div class="o_address_format" name="div_address">
-                    <field name="street" placeholder="Street..." class="o_address_street"/>
-                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                    <field name="city" placeholder="City" class="o_address_city"/>
-                    <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create_edit":True, "no_create": True}' context="{'country_id': country_id, 'zip': zip}"/>
-                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create_edit":True, "no_create": True}'/>
-                  </div>
-                </div>
-              </group>
-              <group colspan="5">
-                <field name="dob"/>
-                <field name="email" widget="email"/>
-                <field name="phone" widget="phone"/>
-                <field name="mobile" widget="phone"/>
-                <field name="comment" placeholder="Internal notes..."/>
-              </group>
-              <group colspan="1">
-                <field name="image" widget="image" class="oe_avatar" nolabel="1" options="{'image_preview': 'image_128'}"/>
-              </group>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record> -->
-
-    <!-- <record id="base.view_partner_tree" model="ir.ui.view">
-      <field name="name">res.partner.tree</field>
-      <field name="model">res.partner</field>
-      <field name="arch" type="xml">
-        <tree string="Contacts">
-          <field name="name"/>
-          <field name="email" optional="show"/>
-          <field name="phone" optional="show"/>
-          <field name="function" optional="hide"/>
-          <field name="city" optional="hide"/>
-          <field name="state_id" optional="hide"/>
-          <field name="country_id" optional="hide"/>
-          <field name="dob" optional="hide"/>
-          <field name="mobile" optional="hide"/>
-        </tree>
-      </field>
-    </record> -->
-
-    <!-- <record id="base.res_partner_kanban_view" model="ir.ui.view">
-      <field name="name">res.partner.kanban</field>
-      <field name="model">res.partner</field>
-      <field name="arch" type="xml">
-        <kanban>
-          <field name="id"/>
-          <field name="name"/>
-          <field name="function"/>
-          <field name="email"/>
-          <field name="phone"/>
-          <field name="mobile"/>
-          <field name="city"/>
-          <field name="state_id"/>
-          <field name="country_id"/>
-          <field name="image"/>
-          <templates>
-            <t t-name="kanban-box">
-              <div class="oe_kanban_global_click">
-                <div>
-                  <div class="o_kanban_image">
-                    <img t-att-src="kanban_image('res.partner', 'image', record.id.raw_value)" alt="image"/>
-                  </div>
-                  <div class="oe_kanban_details">
-                    <field name="name"/>
-                    <div t-if="record.function.raw_value"><field name="function"/></div>
-                    <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
-                    <div t-if="record.phone.raw_value">Phone: <field name="phone" widget="phone"/></div>
-                    <div t-if="record.mobile.raw_value">Mobile: <field name="mobile" widget="phone"/></div>
-                    <div>
-                      <field t-if="record.city.raw_value" name="city"/>
-                      <field t-if="record.state_id.raw_value" name="state_id"/>
-                      <field t-if="record.country_id.raw_value" name="country_id"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </t>
-          </templates>
-        </kanban>
-      </field>
-    </record> -->
-
-    <!-- <record id="base.action_partner_form" model="ir.actions.act_window">
-      <field name="name">Contacts</field>
-      <field name="res_model">res.partner</field>
-      <field name="view_mode">tree,kanban,form</field>
-      <field name="view_id" ref="base.view_partner_form"/>
-      <field name="help" type="html">
-        <p class="o_view_nocontent_smiling_face">
-          Create a new contact in your address book
-        </p><p>
-          Odoo helps you easily track all activities related to a customer.
-        </p>
-      </field>
-    </record> -->
-
-    <!-- Kanban View of Contacts-->
-    <!-- <record id="contact_view_kanban" model="ir.ui.view">
-      <field name="name">contact.view.kanban</field>
-      <field name="model">contact.contact</field>
-      <field name="arch" type="xml">
-        <kanban>
-          <field name="id"/>
-          <field name="name"/>
-          <field name="title"/>
-          <field name="position"/>
-          <field name="phone"/>
-          <field name="email"/>
-          <field name="image"/>
-          <templates>
-            <t t-name="kanban-box">
-              <div class="oe_kanban_global_click">
-                <div>
-                  <div class="o_kanban_image">
-                    <img t-att-src="kanban_image('contact.contact', 'image',record.id.raw_value)" alt="image"/>
-                  </div>
-                  <div class="oe_kanban_details">
-                    <field name="name"/>
-                    <div><field name="position"/></div>
-                    <div><field name="phone"/></div>
-                    <div><field name="email"/></div>
-                  </div>
-                </div>
-              </div>
-            </t>
-          </templates>
-        </kanban>
-      </field>
-    </record> -->
-
-    <!-- Form View of Bank Info -->
-    <!-- <record id="base.view_res_bank_form" model="ir.ui.view">
-      <field name="name">res.bank.form</field>
-      <field name="model">res.bank</field>
-      <field name="arch" type="xml">
-        <form string="Bank">
-          <sheet>
-            <div class="oe_button_box" name="button_box">
-              <button type="object" class="oe_stat_button" icon="fa-archive">
-              </button>
-            </div>
-            <div class="oe_title">
-            <label for="name" string="Name"/>
-            <h1>
-              <field name="name" placeholder="Name"/>
-            </h1>
-              <field name="logo" widget="image"/>
-            </div>
-            <group col="4">
-              <field name="branch"/>
-              <field name="bic"/>
-            </group>
-            <group>
-              <group string="Address">
-                <label for="street" string="Address"/>
-                <div class="o_address_format">
-                  <field name="street" placeholder="Street..." class="o_address_street"/>
-                  <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                  <field name="city" placeholder="City" class="o_address_city"/>
-                  <field name="state" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create_edit":True, "no_create": True}'/>
-                  <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                  <field name="country" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create_edit":True, "no_create": True}'/>
-                </div>
-              </group>
-              <group string="Communication">
-                <field name="phone"/>
-                <field name="email" widget="email"/>
-                <field name="active"/>
-              </group>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-    
-    <record id="view_res_bank_tree_extension" model="ir.ui.view">
-      <field name="name">res.bank.tree</field>
-      <field name="model">res.bank</field>
-      <field name="inherit_id" ref="base.view_res_bank_tree"/>
-      <field name="arch" type="xml">
-        <field name="bic" position="before">
-          <field name="branch"/>
-        </field>
-      </field>
-    </record>
-
-    <record id="bank_view_kanban" model="ir.ui.view">
-      <field name="name">res.bank.kanban</field>
-      <field name="model">res.bank</field>
-      <field name="arch" type="xml">
-        <kanban>
-          <field name="id"/>
-          <field name="name"/>
-          <field name="logo"/>
-          <field name="branch"/>
-          <field name="bic"/>
-          <templates>
-            <t t-name="kanban-box">
-              <div class="oe_kanban_global_click">
-                <div>
-                  <div class="o_kanban_image">
-                    <img alt="image" t-att-src="kanban_image('res.bank', 'logo',record.id.raw_value)"/>
-                  </div>
-                  <div class="oe_kanban_details">
-                    <field name="name"/>
-                    <field name="branch"/>
-                    <field name="bic"/>
-                  </div>
-                </div>
-              </div>
-            </t>
-          </templates>
-        </kanban>
-      </field>
-    </record>
-
-    <record id="base.action_res_bank_form" model="ir.actions.act_window">
-      <field name="name">Banks</field>
-      <field name="res_model">res.bank</field>
-      <field name="view_mode">kanban,form</field>
-      <field name="view_id" ref="base.view_res_bank_form"/>
-      <field name="help" type="html">
-        <p class="o_view_nocontent_smiling_face">
-          Create a new bank
-        </p><p>
-          Manage bank records you want to be used in the system.
-        </p>
-      </field>
-    </record> -->
-
-    <!-- <record id="bank_info_view_form" model="ir.ui.view">
-      <field name="name">bank.info.view.form</field>
-      <field name="model">bank.info</field>
-      <field name="arch" type="xml">
-        <form>
-          <sheet>
-            <group>
-              <field name="property_id" options='{"no_open": True}'/>
-              <field name="bank_name" placeholder="Eg. Bank Name..."/>
-              <field name="bank_branch" placeholder="Eg. Mayangone Branch..."/>
-              <field name="bank_account" placeholder="Eg. 00345678923434..."/>
-              <field name="bank_desc" placeholder="...Description (or) Remark..."/>
-              <field name="bank_logo" widget="image" class="float-left oe_avatar"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record> -->
-
-    <!-- Kanban View of Bank Info-->
-    <!-- <record id="bank_info_view_kanban" model="ir.ui.view">
-      <field name="name">bank.info.view.kanban</field>
-      <field name="model">bank.info</field>
-      <field name="arch" type="xml">
-        <kanban>
-          <field name="id"/>
-          <field name="bank_name"/>
-          <field name="bank_branch"/>
-          <field name="bank_account"/>
-          <field name="bank_desc"/>
-          <templates>
-            <t t-name="kanban-box">
-              <div t-attf-class="oe_kanban_global_click">
-                <div>
-                  <div class="o_kanban_image">
-                    <img alt="image" t-att-src="kanban_image('bank.info', 'bank_logo',record.id.raw_value)"/>
-                  </div>
-                  <div class="oe_kanban_details">
-                    <field name="bank_name"/>
-                    <div><field name="bank_branch"/></div>
-                    <div>
-                      <group>
-                        <field name="bank_account"/>
-                      </group>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </t>
-          </templates>
-        </kanban>
-      </field>
-    </record> -->
-
-    <!-- List View of Room Type Count -->
-    <!-- <record id="roomtype_count_view_list" model="ir.ui.view">
-      <field name="name">roomtype.count.view.list</field>
-      <field name="model">roomtype.count</field>
-      <field name="arch" type="xml">
-        <tree string="Room Type Count">
-          <field name="rtype_name"/>
-          <field name="rtype_code"/>
-          <field name="rtype_count"/>
-        </tree>
-      </field>
-    </record> -->
-
-    <!-- action of room type count -->
-    <!-- <record id="roomtype_count_action_window" model="ir.actions.act_window">
-      <field name="name">Room Type Count</field>
-      <field name="res_model">roomtype.count</field>
-      <field name="view_mode">tree</field>
-    </record> -->
-
     <!-- ========== Hotel Building Setup ========== -->
     <!-- Building Setup Form View -->
     <record id="building_view_form" model="ir.ui.view">
@@ -586,20 +458,25 @@
                 <field name="building_name" placeholder="Eg. Story Building (or) Villa" />
                 <field name="building_type" placeholder="Eg. Building Type" options='{"no_open": True}'/>
                 <field name="building_capacity" placeholder="Eg. Floors (or) Villa Capacities"/>
-              </group>
-              <group>
                 <field name="building_location"/>
                 <field name="building_desc"/>
-                <field name="building_img" widget="image" class="float-left oe_avatar"/>
+              </group>
+              <group>
+                <field name="building_img" widget="image" colspan="6"/>
                 <!-- <field name="location_number" invisible ='1'/> -->
               </group>
-                <notebook>
-                <page string="Room Location">
-                  <field name="location_ids" widget="many2many">
-                  </field>
-                </page>
-              </notebook>
             </group>
+            <notebook>
+              <page string="Room Location" colspan='4'>
+                <field name="location_ids">
+                  <tree string="Room Location" limit="10">
+                    <field name="sequence" widget="handle"/>
+                    <field name="location_code"/>
+                    <field name="location_name"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
@@ -611,8 +488,10 @@
       <field name="model">building.building</field>
       <field name="arch" type="xml">
         <tree string="Building">
+          <field name="sequence" widget="handle"/>
           <field name="building_name"/>
-          <field name="building_type" optional="hide"/>
+          <field name="building_type"/>
+          <field name="location_ids" widget="many2many_tags"/>
           <field name="building_location" optional="hide"/>
         </tree>
       </field>
@@ -625,7 +504,20 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Building Type Form View -->
+    <!-- ===========Building Type Setup============-->
+    <!-- Building Type View List -->
+    <record id="building_type_view_list" model="ir.ui.view">
+      <field name="name">building.type.view.list</field>
+      <field name="model">building.type</field>
+      <field name="arch" type="xml">
+        <tree string="State" editable="bottom">
+          <field name="building_type"/>
+          <field name="buildingtype_desc"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Building Type View Form -->
     <record id="building_type_view_form" model="ir.ui.view">
       <field name="name">building.type.view.form</field>
       <field name="model">building.type</field>
@@ -641,19 +533,7 @@
       </field>
     </record>
 
-    <!-- Building Type Tree View -->
-    <record id="building_type_view_list" model="ir.ui.view">
-      <field name="name">building.type.view.list</field>
-      <field name="model">building.type</field>
-      <field name="arch" type="xml">
-        <tree string="State" editable="bottom">
-          <field name="building_type"/>
-          <field name="buildingtype_desc"/>
-        </tree>
-      </field>
-    </record>
-
-    <!-- action of building type -->
+    <!-- Action of Room Type-->
     <record id="action_country_state" model="ir.actions.act_window">
       <field name="name">Fed. States</field>
       <field name="type">ir.actions.act_window</field>
@@ -680,13 +560,14 @@
         </form>
       </field>
     </record>
-       
+
     <!-- Room Location Tree View-->
     <record id="room_location_view_list" model="ir.ui.view">
       <field name="name">room.location.view.list</field>
       <field name="model">room.location</field>
       <field name="arch" type="xml">
         <tree string="Room Location">
+          <field name="sequence" widget="handle"/>
           <field name="location_code"/>
           <field name="location_name"/>
         </tree>
@@ -699,40 +580,52 @@
       <field name="res_model">room.location</field>
       <field name="view_mode">tree,form</field>
     </record>
-  
+
     <!-- ========== Room Type Setup ========== -->
-     <!-- Room Type Setup Form View -->
+    <!-- Room Type Setup Form View -->
     <record id="room_type_view_form" model="ir.ui.view">
       <field name="name">room.type.view.form</field>
       <field name="model">room.type</field>
       <field name="arch" type="xml">
         <form string="Room Type">
           <sheet>
+            <field name="active" invisible="1"/>
+            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <h2>Room Type Setup</h2>
             <br></br>
             <group>
-              <field name="code" placeholder="Eg. DLX....."/>
-              <field name="name" placeholder="Eg. Deluxe....."/>
-              <field name="ratecode_id"/>
-              <!-- <field name="totalroom" type="hidden"/> -->
-              <field name="image" widget="image" class="float-left oe_avatar"/>
-              <field name="roomtype_desc"/>
+              <group>
+                <field name="code" placeholder="Eg. DLX....."/>
+                <field name="name" placeholder="Eg. Deluxe....."/>
+                <field name="color" required="True"/>
+                <field name="fix_type" widget="boolean_toggle"/>
+                <field name="bed_type" attrs="{'invisible': [('fix_type','=', True)], 'required': [('fix_type', '!=', True)]}" widget="many2many_tags"/>
+                <field name="ratecode_id"/>
+                <field name="totalroom" invisible='1'/>
+                <field name="roomtype_desc"/>
+              </group>
+              <group>
+                <field name="image" widget="image"/>
+              </group>
             </group>
           </sheet>
         </form>
-      </field> 
+      </field>
     </record>
 
-    <!-- List View of Room Type -->
+    <!-- Room Type List View-->
     <record id="room_type_view_list" model="ir.ui.view">
       <field name="name">room.type.view.list</field>
       <field name="model">room.type</field>
       <field name="arch" type="xml">
-        <tree string="Room Type">
+        <tree string="Room Type List">
+          <field name="sequence" widget="handle"/>
           <field name="code"/>
-          <field name="name"/>
+          <field name="name" />
+          <field name="fix_type"/>
+          <field name="bed_type" attrs="{'invisible': [('fix_type','=', True)]}" widget="many2many_tags"/>
+          <field name="roomtype_desc"/>
           <field name="ratecode_id"/>
-          <field name="count"/>
         </tree>
       </field>
     </record>
@@ -743,6 +636,7 @@
       <field name="model">room.type</field>
       <field name="arch" type="xml">
         <kanban>
+          <field name="color" />
           <field name="id"/>
           <field name="code"/>
           <field name="name"/>
@@ -750,15 +644,43 @@
           <field name="roomtype_desc"/>
           <templates>
             <t t-name="kanban-box">
-              <div class="oe_kanban_global_click">
-                <div>
-                  <div class="o_kanban_image">
-                    <img alt="" t-att-src="kanban_image('room.type', 'image')"/>
-                  </div>
-                  <div class="oe_kanban_details">
-                    <field name="code"/>
-                    <div><field name="name"/></div>
-                    <div><field name="roomtype_desc"/></div>
+              <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                <div class="o_dropdown_kanban dropdown">
+                  <a role="button" class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                    <span title="fa_icon" class="fa fa-bars fa-lg" />
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <t t-if="widget.editable">
+                      <li>
+                        <a type="edit">Edit</a>
+                      </li>
+                    </t>
+                    <t t-if="widget.deletable">
+                      <li>
+                        <a type="delete">Delete</a>
+                      </li>
+                    </t>
+                    <!-- <li>
+                        <ul class="oe_kanban_colorpicker" data-field="color" />
+                    </li> -->
+                  </ul>
+                </div>
+                <div class="oe_kanban_details" style='margin-top: -5px;'>
+                  <div class="oe_kanban_content">
+                    <div class="oe_kanban_project_list">
+                      <div class="o_kanban_image">
+                        <img alt="" t-att-src="kanban_image('room.type', 'image')"/>
+                      </div>
+                      <div class="oe_kanban_details">
+                        <field name="code"/>
+                        <div>
+                          <field name="name"/>
+                        </div>
+                        <div>
+                          <field name="roomtype_desc"/>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -793,7 +715,6 @@
         </form>
       </field>
     </record>
-
     <!-- action of room view setup -->
     <record id="room_view_action_window" model="ir.actions.act_window">
       <field name="name">Room View</field>
@@ -814,10 +735,24 @@
             <group>
               <field name="facilitytype_id"/>
               <field name="amenity_ids" placeholder="Eg. Aircon..." widget="many2many_tags"/>
-              <field name="facility_desc" placeholder="Eg. Aircon....."/> 
+              <field name="facility_desc" placeholder="Eg. Aircon....."/>
             </group>
           </sheet>
         </form>
+      </field>
+    </record>
+
+    <!-- Room Facility List View -->
+    <record id="room_facility_view_tree" model="ir.ui.view">
+      <field name="name">room.facility.view.tree</field>
+      <field name="model">room.facility</field>
+      <field name="arch" type="xml">
+        <tree string="Room Facility">
+          <field name="sequence" widget="handle"/>
+          <field name="facilitytype_id"/>
+          <field name="amenity_ids" placeholder="Eg. Aircon..." widget="many2many_tags"/>
+          <field name="facility_desc" placeholder="Eg. Aircon....."/>
+        </tree>
       </field>
     </record>
 
@@ -828,27 +763,64 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <!-- Room Facility Type Form View -->
+    <record id="room_facility_type_view_form" model="ir.ui.view">
+      <field name="name">room.facility.type.view.form</field>
+      <field name="model">room.facility.type</field>
+      <field name="arch" type="xml">
+        <form string="Room Facility">
+          <sheet>
+            <h2>Facility Type</h2>
+            <br></br>
+            <group>
+              <field name="facility_type" placeholder="Eg. ENT..... "/>
+              <field name="facilitytype_desc" placeholder="Eg. Entertainments...."/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Room Facility List View -->
+    <record id="room_facility_type_view_tree" model="ir.ui.view">
+      <field name="name">room.facility.type.view.tree</field>
+      <field name="model">room.facility.type</field>
+      <field name="arch" type="xml">
+        <tree string="Facility Type">
+          <field name="facility_type"/>
+          <field name="facilitytype_desc"/>
+        </tree>
+      </field>
+    </record>
+
     <!-- ========== Hotel Room Setup ========== -->
     <!-- Hotel Room Setup Form View -->
     <record id="property_room_view_form" model="ir.ui.view">
       <field name="name">property.room.view.form</field>
       <field name="model">property.room</field>
       <field name="arch" type="xml">
-        <form string="Room Setup">
+        <form string="Property Room">
           <sheet>
             <h2>Property Room</h2>
             <br></br>
-            <field name="room_img" widget="image" class="float-left oe_avatar"/>
+            <field name="room_img" widget="image" class="oe_avatar"/>
             <group>
               <group>
+                <field name="is_hfo" invisible="1"/>
+                <field name="is_propertyroom" invisible='1'/>
                 <field name="property_id"/>
                 <field name="room_no" placeholder="Eg. 101..."/>
                 <field name="roomtype_ids" invisible="1"/>
                 <field name="roomtype_id"/>
+                <field name="bedtype_ids" invisible="1"/>
+                <field name="is_roomtype_fix" invisible="1"/>
+                <field name="bedtype_id" attrs="{'invisible': ['|', ('is_roomtype_fix', '=', True), ('is_roomtype_fix', '=', 'Null')],'required': [('is_roomtype_fix', '=', False)]}" options="{'no_quick_create':True, 'no_create_edit':True, 'no_edit':True}"/>
                 <field name="building_ids" invisible="1"/>
-                <field name="building_id"/>
-                <field name="roomlocation_id" options="{'no_quick_create': True, 'no_create_edit': True, 'no_edit': True}"/>
+                <field name="building_id" />
+                <field name="roomlocation_id" options="{'no_quick_create':True, 'no_create_edit':True, 'no_edit':True}"/>
                 <field name="room_bedqty"/>
+                <field name="no_of_pax"/>
+                <field name="zip_type" widget="boolean_toggle"/>
               </group>
               <group>
                 <field name="room_extension" placeholder="Eg. 101... "/>
@@ -861,31 +833,40 @@
                 <notebook>
                   <page string="Room Facility">
                     <field name="facility_ids" widget="many2many_kanban">
-                    <kanban quick_create="false" create="true" delete="true">
-                      <field name="facilitytype_id"/>
-                      <field name="facility_desc"/>
-                      <field name="amenity_ids"/>
-                      <templates>
-                        <t t-name="kanban-box">
-                          <div class="oe_kanban_global_click" style="position: relative">
-                            <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; display: inline-block">X</a>
-                            <div class="oe_module_vignette">
-                              <div class="oe_module_desc">
-                                <field name="facilitytype_id"/>
-                                <field name="facility_desc"/>
-                                <field name="amenity_ids"/>
+                      <kanban quick_create="false" create="true" delete="true">
+                        <field name="amenity_ids"/>
+                        <field name="facilitytype_id"/>
+                        <field name="facility_desc"/>
+                        <templates>
+                          <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click" style="position: relative">
+                              <a t-if="! read_only_mode" type="delete" style="position: absolute; right: 0; padding: 4px; display: inline-block">X</a>
+                              <div class="oe_module_vignette">
+                                <div class="oe_module_desc">
+                                  <field name="facilitytype_id"/>
+                                  <field name="facility_desc"/>
+                                  <field name="amenity_ids"/>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </t>
-                      </templates>
-                    </kanban>
+                          </t>
+                        </templates>
+                      </kanban>
                     </field>
                   </page>
                 </notebook>
               </group>
             </group>
+            <button string="Copy" name="%(action_roomno_copy_wiz)d" type="action" class="btn btn-primary" attrs="{'invisible': [('is_hfo', '=', True)]}" context="{'default_property_id' : id}">
+              <i class="fa fa-paint-brush"></i>
+            </button>
           </sheet>
+          <!-- <footer> -->
+          <!-- <button type="button" class="btn btn-primary"><span>Save</span></button>-->
+          <!-- <button special="cancel" string="Cancel" class="btn-secondary" icon="fa-close"/>
+            <button string="Copy" name="%(action_roomno_copy_wiz)d" type="action" class="btn btn-primary" attrs="{'invisible': [('is_propertyroom', '=', False)]}" context="{'default_property_id' : id}">
+        <i class="fa fa-paint-brush"></i></button>
+          </footer> -->
         </form>
       </field>
     </record>
@@ -896,10 +877,13 @@
       <field name="model">property.room</field>
       <field name="arch" type="xml">
         <tree string="Room Setup">
+          <field name="sequence" widget="handle"/>
+          <field name="is_propertyroom" invisible='1'/>
           <field name="property_id" optional="hide"/>
           <field name="room_no" optional="show"/>
           <field name="building_id" optional="show"/>
           <field name="roomtype_id" optional="show"/>
+          <field name="bedtype_id" optional="show"/>
           <field name="roomlocation_id" optional="show"/>
           <field name="room_bedqty" optional="show"/>
           <field name="room_extension" optional="show"/>
@@ -917,6 +901,7 @@
     <record id="property_room_action_window" model="ir.actions.act_window">
       <field name="name">Room Setup</field>
       <field name="res_model">property.room</field>
+      <field name="limit">10</field>
       <field name="view_mode">tree,form</field>
     </record>
 
@@ -930,10 +915,10 @@
             <h2>Market Segment</h2>
             <br></br>
             <group>
-                <field name="market_code" placeholder="Eg. CMP..."/>
-                <field name="market_name" placeholder="Eg. Complimentry..."/>
-                <field name="group_id"/>  
-                <field name="options"/>
+              <field name="market_code" placeholder="Eg. CMP..."/>
+              <field name="market_name" placeholder="Eg. Complimentry..."/>
+              <field name="group_id"/>
+              <field name="options"/>
             </group>
           </sheet>
         </form>
@@ -941,13 +926,14 @@
     </record>
 
     <!-- Market Segment List View -->
-    <record id="market_segment_view_list" model="ir.ui.view">
-      <field name="name">market.segment.view.list</field>
+    <record id="market_segment_view_tree" model="ir.ui.view">
+      <field name="name">market.segment.view.tree</field>
       <field name="model">market.segment</field>
       <field name="arch" type="xml">
         <tree string="Market Segment">
-          <field name="market_code"/>
-          <field name="market_name"/>
+          <field name="sequence" widget="handle"/>
+          <field name="market_code" />
+          <field name="market_name" />
           <field name="group_id"/>
           <field name="options"/>
         </tree>
@@ -971,11 +957,24 @@
             <h2>Market Source</h2>
             <br></br>
             <group>
-              <field name="source_code"/>
-              <field name="source_desc"/>
+              <field name="source_code" placeholder="Eg. PH...."/>
+              <field name="source_desc" placeholder="Eg. Phone....."/>
             </group>
           </sheet>
         </form>
+      </field>
+    </record>
+
+    <!-- Market Source List View -->
+    <record id="market_source_view_tree" model="ir.ui.view">
+      <field name="name">market.source.view.tree</field>
+      <field name="model">market.source</field>
+      <field name="arch" type="xml">
+        <tree string="Market Source">
+          <field name="sequence" widget="handle"/>
+          <field name="source_code" />
+          <field name="source_desc" />
+        </tree>
       </field>
     </record>
 
@@ -984,55 +983,6 @@
       <field name="name">Market Source</field>
       <field name="res_model">market.source</field>
       <field name="view_mode">tree,form</field>
-    </record>
-
-    <!-- Weekend Form View -->
-    <record id="weekend_view_form" model="ir.ui.view">
-      <field name="name">weekend.view.form</field>
-      <field name="model">weekend.weekend</field>
-      <field name="arch" type="xml">
-        <form string="Weekend" create="false" delete="false" no_create_edit="True">
-          <sheet>
-            <h2>Define Weekends</h2>
-            <br></br>
-            <group>
-              <field name="property_id"/>
-              <field name="monday" widget="boolean_toggle"/>
-              <field name="tuesday" widget="boolean_toggle"/>
-              <field name="wednesday" widget="boolean_toggle"/>
-              <field name="thursday" widget="boolean_toggle"/>
-              <field name="friday" widget="boolean_toggle"/>
-              <field name="saturday" widget="boolean_toggle"/>
-              <field name="sunday" widget="boolean_toggle"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <!-- Weekend List View -->
-    <!-- <record id="weekend_view_list" model="ir.ui.view">
-      <field name="name">weekend.view.list</field>
-      <field name="model">weekend.weekend</field>
-      <field name="arch" type="xml">
-        <tree string="Weekend" create="false" edit="true">
-          <field name="monday"/>
-          <field name="tuesday"/>
-          <field name="wednesday"/>
-          <field name="thursday"/>
-          <field name="friday"/>
-          <field name="saturday"/>
-          <field name="sunday"/>
-        </tree>
-      </field>
-    </record> -->
-
-    <!-- action of weekend -->
-    <record id="weekend_action_window" model="ir.actions.act_window">
-      <field name="name">Weekend</field>
-      <field name="res_model">weekend.weekend</field>
-      <field name="view_mode">form</field>
-      <field name="limit">1</field>
     </record>
 
     <!-- Special Day Form View -->
@@ -1046,7 +996,7 @@
             <br></br>
             <group>
               <field name="property_id"/>
-              <label for="special_date" string="Special Date"/>
+              <label for="special_date" string="Date"/>
               <div>
                 <field name="special_date" placeholder="Eg. Water Festival Date....."/>
               </div>
@@ -1060,8 +1010,9 @@
       </field>
     </record>
 
-    <record id="special_day_view_list" model="ir.ui.view">
-      <field name="name">special.day.view.list</field>
+    <!-- Special List View -->
+    <record id="special_day_view_tree" model="ir.ui.view">
+      <field name="name">special.day.view.tree</field>
       <field name="model">special.day</field>
       <field name="arch" type="xml">
         <tree string="Special Days">
@@ -1078,6 +1029,38 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <!-- Weekend Form View -->
+    <record id="weekend_view_form" model="ir.ui.view">
+      <field name="name">weekend.view.form</field>
+      <field name="model">weekend.weekend</field>
+      <field name="arch" type="xml">
+        <form string="Weekend" create="false" delete="false" no_create_edit="True" import="false">
+          <sheet>
+            <h2>Define Weekends</h2>
+            <br></br>
+            <group>
+              <field name="property_id"/>
+              <field name="monday" widget="boolean_toggle"/>
+              <field name="tuesday" widget="boolean_toggle"/>
+              <field name="wednesday" widget="boolean_toggle" />
+              <field name="thursday" widget="boolean_toggle" />
+              <field name="friday" widget="boolean_toggle" />
+              <field name="saturday" widget="boolean_toggle" />
+              <field name="sunday" widget="boolean_toggle" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- action of weekend -->
+    <record id="weekend_action_window" model="ir.actions.act_window">
+      <field name="name">Weekend</field>
+      <field name="res_model">weekend.weekend</field>
+      <field name="view_mode">form</field>
+      <field name="limit">1</field>
+    </record>
+
     <!-- Package Form View -->
     <record id="package_view_form" model="ir.ui.view">
       <field name="name">package.view.form</field>
@@ -1085,13 +1068,18 @@
       <field name="arch" type="xml">
         <form string="Package">
           <sheet>
-            <h2>Package Setup</h2>
+            <h2>Package</h2>
             <br></br>
             <group>
               <field name="property_id"/>
               <field name="package_code" placeholder="Eg. INBF....."/>
               <field name="package_name" placeholder="Eg. Including Breakfast....."/>
             </group>
+            <notebook>
+              <page string="Package Charges">
+                <field name="package_line_ids" context="{'default_property_id' :property_id, 'default_packge_id':id}"/>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
@@ -1103,13 +1091,14 @@
       <field name="model">package.package</field>
       <field name="arch" type="xml">
         <tree string="Package">
+          <field name="property_id"/>
           <field name="package_code"/>
           <field name="package_name"/>
         </tree>
       </field>
     </record>
 
-    <!-- Package Kanban View -->
+    <!-- Kanban View of Package -->
     <record id="package_view_kanban" model="ir.ui.view">
       <field name="name">package.view.kanban</field>
       <field name="model">package.package</field>
@@ -1126,7 +1115,9 @@
                   <div class="oe_kanban_details">
                     <field name="package_code"/>
                     <div></div>
-                    <div><field name="package_name"/></div>
+                    <div>
+                      <field name="package_name"/>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1142,7 +1133,7 @@
       <field name="res_model">package.package</field>
       <field name="view_mode">kanban,tree,form</field>
     </record>
-    
+
     <!-- Revenue Type Form View -->
     <record id="revenue_type_view_form" model="ir.ui.view">
       <field name="name">revenue.type.view.form</field>
@@ -1155,7 +1146,7 @@
               <field name="rev_code" placeholder="Eg. Revenue 1~7, Non Revenue-> 8, Payment -> 9"/>
               <field name="rev_subgroup" attrs="{'invisible': [('rev_type', '=', 'P')]}" />
               <field name="revtype_name" string="Revenue Name" attrs="{'invisible': [('rev_subgroup', '=', True)]}"/>
-              <field name="subgroup_ids"  context="{'default_revtype_id' : id}" attrs="{'invisible': [('rev_subgroup', '=', False)]}"/>
+              <field name="subgroup_ids" context="{'default_revtype_id' : id}" attrs="{'invisible': [('rev_subgroup', '=', False)]}"/>
             </group>
           </sheet>
         </form>
@@ -1172,7 +1163,7 @@
           <field name="rev_type" string ="Revenue"/>
           <field name="rev_subgroup" string="Sub Group" attrs="{'invisible': [('rev_type', '=', 'P')]}"/>
           <field name="revtype_name" string="Revenue Name" attrs="{'invisible': [('rev_subgroup', '=', True)]}"/>
-          <field name="subgroup_ids" attrs="{'invisible': [('rev_subgroup', '=', False)]}"/>
+          <field name="subgroup_ids" attrs="{'invisible': [('rev_subgroup', '=', False)]}" widget='many2many_tags'/>
         </tree>
       </field>
     </record>
@@ -1182,15 +1173,15 @@
       <field name="name">revenue.type.search</field>
       <field name="model">revenue.type</field>
       <field name="arch" type="xml">
-          <search string="Revenue Type">
-            <filter string="Revenue Type" name="rev_type"/>
-            <filter string="Sub Group" name="subgroup_ids"/>
-               <field name="subgroup_ids"/>
-              <group expand="0" string="Group By">
-                <filter string="Revenue Type" name="revtype" domain="" context="{'group_by':'rev_type'}"/>
-                <filter string="Sub Group" name="subgroup" domain="" context="{'group_by':'subgroup_ids'}"/>
-              </group>
-          </search>
+        <search string="Revenue Type">
+          <filter string="Revenue Type" name="rev_type"/>
+          <filter string="Sub Group" name="subgroup_ids"/>
+          <field name="subgroup_ids"/>
+          <group expand="0" string="Group By">
+            <filter string="Revenue Type" name="revtype" domain="" context="{'group_by':'rev_type'}"/>
+            <filter string="Sub Group" name="subgroup" domain="" context="{'group_by':'subgroup_ids'}"/>
+          </group>
+        </search>
       </field>
     </record>
 
@@ -1211,8 +1202,8 @@
             <group>
               <field name="property_id"/>
               <field name="revtype_id"/>
-              <field name="sub_group"/>
-              <field name="sub_desc"/>
+              <field name="sub_group" placeholder="0 ~ 9"/>
+              <field name="sub_desc" placeholder="Sub Group Revenue"/>
             </group>
           </sheet>
         </form>
@@ -1232,20 +1223,19 @@
       </field>
     </record>
 
-    <!-- Revenue Sub Group Search View -->
     <record id="sub_group_view_search" model="ir.ui.view">
       <field name="name">sub.group.search</field>
       <field name="model">sub.group</field>
       <field name="arch" type="xml">
-          <search string="Sub Group">
-              <field name="sub_desc" filter_domain="['|', ('sub_desc','ilike',self), ('sub_desc','=like',str(self)+'%')]" string="Sub Group"/>
-              <filter string="Property" name="property_id"/>
-               <field name="property_id"/>
-              <group expand="0" string="Group By">
-                  <filter string="Property" name="property" domain="" context="{'group_by':'property_id'}"/>
-                  <filter string="Revenue Type" name="revtype" domain="" context="{'group_by':'revtype_id'}"/>
-              </group>
-          </search>
+        <search string="Sub Group">
+          <field name="sub_desc" filter_domain="['|', ('sub_desc','ilike',self), ('sub_desc','=like',str(self)+'%')]" string="Sub Group"/>
+          <filter string="Property" name="property_id"/>
+          <field name="property_id"/>
+          <group expand="0" string="Group By">
+            <filter string="Property" name="property" domain="" context="{'group_by':'property_id'}"/>
+            <filter string="Revenue Type" name="revtype" domain="" context="{'group_by':'revtype_id'}"/>
+          </group>
+        </search>
       </field>
     </record>
 
@@ -1258,7 +1248,7 @@
       <field name="view_id" ref="sub_group_view_list"/>
     </record>
 
-    <!-- Transaction Form View  --> 
+    <!-- Transaction Form View  -->
     <record id="transaction_view_form" model="ir.ui.view">
       <field name="name">transaction.view.form</field>
       <field name="model">transaction.transaction</field>
@@ -1266,7 +1256,6 @@
         <form string="Transaction">
           <sheet>
             <h2>Transaction</h2>
-            <br></br>
             <group>
               <group>
                 <field name="property_id"/>
@@ -1276,7 +1265,8 @@
                 <field name="revsub_active" invisible="1"/>
                 <field name="subgroup_ids" invisible="1"/>
                 <field name="subgroup_id" attrs="{'invisible': ['|',('revsub_active', '=', False),('revtype_name', '=', 'Payment')],'required': [('revsub_active', '!=', False)]}"/>
-                <field name="subgroup_name" attrs="{'invisible': [('revsub_active', '=', True)]}"/>
+                <field name="subgroup_name"/>
+                <!-- attrs="{'invisible': [('revsub_active', '=', True)]}"-->
                 <field name="trans_code" placeholder="Eg. 1001....."/>
                 <field name="trans_name" placeholder="Eg. Room Charge ....."/>
                 <field name="trans_unitprice"/>
@@ -1285,6 +1275,7 @@
                 <field name="trans_tax" widget="boolean_toggle" attrs="{'invisible': [('revtype_name', '=', 'Payment')]}"/>
                 <field name="trans_internal" widget="boolean_toggle"/>
                 <field name="trans_minus" widget="boolean_toggle" attrs="{'invisible': [('revtype_name', '=', 'Payment')]}"/>
+                <field name="allowed_pkg" widget="boolean_toggle"/>
                 <field name="trans_type" attrs="{'invisible': [('revtype_name', '=', 'Payment')]}"/>
               </group>
             </group>
@@ -1307,12 +1298,13 @@
           <field name="trans_tax" string="TAX"/>
           <field name="trans_internal" string="Internal" optional="hide"/>
           <field name="trans_minus" optional="hide"/>
+          <field name="allowed_pkg" optional="hide"/>
           <field name="trans_type" optional="hide"/>
         </tree>
       </field>
     </record>
 
-    <!-- Transaction Search View -->
+
     <record id="transaction_view_search" model="ir.ui.view">
       <field name="name">transaction.transaction.search</field>
       <field name="model">transaction.transaction</field>
@@ -1320,7 +1312,7 @@
         <search string="Transactions">
           <field name="trans_name" filter_domain="['|', ('trans_name','ilike',self), ('code','=like',str(self)+'%')]" string="Transaction"/>
           <filter string="Revenue Type" name="revtype_id"/>
-            <field name="revtype_id"/>
+          <field name="revtype_id"/>
           <group expand="0" string="Group By">
             <filter string="Revenue Type" name="revtype" domain="" context="{'group_by':'revtype_id'}"/>
             <filter string="Transaction Group" name="transgroup" domain="" context="{'group_by':'subgroup_id'}"/>
@@ -1341,7 +1333,7 @@
       <field name="view_id" ref="transaction_view_list"/>
     </record>
 
-    <!-- Reservation Type Form View -->
+    <!-- Reservation Type Form View-->
     <record id="rsvn_type_view_form" model="ir.ui.view">
       <field name="name">rsvn.type.view.form</field>
       <field name="model">rsvn.type</field>
@@ -1351,8 +1343,10 @@
             <h2>Reservation Type</h2>
             <br></br>
             <group>
-              <field name="rsvn_name" placeholder="Eg. Confirmed (or) Unconfirmed....."/>
-              <field name="rsvn_options"/>
+              <group>
+                <field name="rsvn_name" placeholder="Eg. Confirmed (or) Unconfirmed....."/>
+                <field name="rsvn_options"/>
+              </group>
             </group>
           </sheet>
         </form>
@@ -1378,22 +1372,26 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Reservation Status Form View -->
+    <!-- Reservation Status Form View-->
     <record id="rsvn_status_view_form" model="ir.ui.view">
-      <field name="name">rsvn.status.view.list</field>
+      <field name="name">rsvn.status.view.form</field>
       <field name="model">rsvn.status</field>
       <field name="arch" type="xml">
-        <form string="Reservation Status">
+        <form string="Reservation Type">
           <sheet>
+            <h2>Reservation Type</h2>
+            <br></br>
             <group>
-              <field name="rsvn_code" placeholder="Eg. CMG....."/>
-              <field name="rsvn_status" placeholder="Eg. Company Granteed....."/>
+              <group>
+                <field name="rsvn_code" placeholder="Eg. CMG....."/>
+                <field name="rsvn_status" placeholder="Eg. Company Granteed....."/>
+                <field name="rsvntype_id"/>
+              </group>
             </group>
           </sheet>
         </form>
       </field>
     </record>
-
     <!-- Reservation Status List View -->
     <record id="rsvn_status_view_list" model="ir.ui.view">
       <field name="name">rsvn.status.view.list</field>
@@ -1402,6 +1400,7 @@
         <tree string="Reservation Type">
           <field name="rsvn_code"/>
           <field name="rsvn_status"/>
+          <field name="rsvntype_id"/>
         </tree>
       </field>
     </record>
@@ -1464,23 +1463,29 @@
       <field name="arch" type="xml">
         <form string="Rate Code">
           <sheet>
-            <h2>Rate Code Setup</h2>
+            <h2>Rate Code</h2>
             <br></br>
-            <group colspan="2">
+            <group>
               <group>
                 <field name='is_ratecode' invisible='1'/>
                 <field name="property_id"/>
                 <field name="rate_code"/>
                 <field name="ratecode_name"/>
+              </group>
+              <group>
+              </group>
+              <group>
                 <field name="transaction_ids" invisible="1"/>
                 <field name="transcation_id"/>
                 <field name="ratecode_type"/>
                 <field name="roomtype_ids" invisible="1"/>
                 <field name="roomtype_id" options="{'no_create': True, 'no_create_edit':True, 'no_open':True}" />
+                <!-- <label for="start_date" string="Start Date"/> -->
+                <field name="start_date"/>
+                <!-- <label for="end_date" string="End Date"/> -->
+                <field name="end_date" />
               </group>
               <group>
-                <field name="start_date"/>
-                <field name="end_date"/>
                 <label for="normal_price1" string="Normal"/>
                 <div class="o_address_format">
                   <field name="normal_price1" style="width:25%%"/>
@@ -1504,7 +1509,9 @@
                 </div>
                 <field name="discount_percent"/>
                 <field name="discount_amount"/>
-                <button string="Change New Rate" name="action_change_new_rate" type="object" context="{'default_property_id' : id,'default_roomtype_id' : active_id,'default_transcation_id' : active_id}" attrs="{'invisible': [('is_ratecode', '=', False)]}" class="btn btn-primary"><i class="fa fa-paint-brush"></i></button>
+                <button string="Change New Rate" name="action_change_new_rate" type="object" context="{'default_property_id' : id,'default_roomtype_id' : active_id,'default_transcation_id' : active_id}" class="btn btn-primary" attrs="{'invisible': [('is_ratecode', '=', False)]}">
+                  <i class="fa fa-paint-brush"></i>
+                </button>
               </group>
             </group>
           </sheet>
@@ -1548,216 +1555,27 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Guest Type -->
-    <!-- <record id="" model="ir.ui.view">
-      <field name="name">credit.limit.view.form</field>
-      <field name="model">credit.limit</field>
-      <field name="arch" type="xml">
-        <form string="Guest Type">
-          <sheet>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="" model="ir.actions.act_window">
-      <field name="name">Guest Type</field>
-      <field name="res_model">credit.limit</field>
-      <field name="view_mode">tree,form</field>
-    </record> -->
-
-    <!-- Guest Country -->
-    <!-- <record id="" model="ir.ui.view">
-      <field name="name">credit.limit.view.form</field>
-      <field name="model">credit.limit</field>
-      <field name="arch" type="xml">
-        <form string="Guest Country">
-          <sheet>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="" model="ir.actions.act_window">
-      <field name="name">Guest Country</field>
-      <field name="res_model">credit.limit</field>
-      <field name="view_mode">tree,form</field>
-    </record> -->
-    
-    <!-- Guest Nationality -->
-    <record id="hms_nationality_view_form" model="ir.ui.view">
-      <field name="name">hms.nationality.view.form</field>
-      <field name="model">hms.nationality</field>
-      <field name="arch" type="xml">
-        <form string="Guest Nationality">
-          <sheet>
-            <h2>Nationality</h2>
-            <br></br>
-            <group>
-              <field name="name"/>
-              <field name="code"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="hms_nationality_view_list" model="ir.ui.view">
-      <field name="name">hms.nationality.view.list</field>
-      <field name="model">hms.nationality</field>
-      <field name="arch" type="xml">
-        <tree string="Guest Nationality">
-          <field name="name"/>
-          <field name="code"/>
-        </tree>
-      </field>
-    </record>
-
-    <record id="hms_nationality_action_window" model="ir.actions.act_window">
-      <field name="name">Guest Nationality</field>
-      <field name="res_model">hms.nationality</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    
-    <!-- Guest Passport -->
-    <record id="hms_passport_view_form" model="ir.ui.view">
-      <field name="name">hms.passport.view.form</field>
-      <field name="model">hms.passport</field>
-      <field name="arch" type="xml">
-        <form string="Guest Passport">
-          <sheet>
-            <h2>Guest Passport</h2>
-            <br></br>
-            <group>
-              <field name="profile_id"/>
-              <field name="passport"/>
-              <field name="issue_date"/>
-              <field name="expire_date"/>
-              <!-- <field name="image" string="Image" widget="image" class="float-left oe_avatar"/> -->
-              <label for="image1" string="Image"/>
-              <div class="o_image_format">
-                <field name="image1" widget="image" class="float-left oe_avatar"/>
-                <field name="image2" widget="image" class="float-left oe_avatar"/>
-                <field name="image3" widget="image" class="float-left oe_avatar"/>
-                <field name="image4" widget="image" class="float-left oe_avatar"/>
-              </div>
-              <field name="note" string="Notes" placeholder="Internal Notes..."/>
-              <field name="active"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="hms_passport_view_list" model="ir.ui.view">
-      <field name="name">hms.passport.view.list</field>
-      <field name="model">hms.passport</field>
-      <field name="arch" type="xml">
-        <tree string="Guest Passport">
-          <field name="profile_id"/>
-          <field name="passport"/>
-          <field name="issue_date"/>
-        </tree>
-      </field>
-    </record>
-
-    <record id="hms_passport_action_window" model="ir.actions.act_window">
-      <field name="name">Guest Passport</field>
-      <field name="res_model">hms.passport</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    
-    <!-- Contract Form View -->
-    <record id="hms_contract_view_form" model="ir.ui.view">
-      <field name="name">hms.contract.view.form</field>
-      <field name="model">hms.contract</field>
-      <field name="arch" type="xml">
-        <form string="Contract">
-          <sheet>
-            <h2>Contract</h2>
-            <br></br>
-            <group>
-              <field name="profile_id"/>
-              <field name="name"/>
-              <field name="start_date"/>
-              <field name="end_date"/>
-              <field name="file"/>
-              <field name="note" string="Note" placeholder="Internal notes..."/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="hms_contract_view_list" model="ir.ui.view">
-      <field name="name">hms.contract.view.list</field>
-      <field name="model">hms.contract</field>
-      <field name="arch" type="xml">
-        <tree string="Contract">
-          <field name="profile_id"/>
-          <field name="name"/>
-          <field name="start_date"/>
-          <field name="end_date"/>
-        </tree>
-      </field>
-    </record>
-
-    <record id="hms_contract_action_window" model="ir.actions.act_window">
-      <field name="name">Contract</field>
-      <field name="res_model">hms.contract</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
     <menuitem action="property_action_window" id="menu_action_property_form" parent="base.menu_users"/>
+
     <menuitem id="property_menu" name="Hotel Property" parent="hotel_menu_hms" sequence="1" action="property_action_window"/>
 
     <menuitem id="room_config" name="Room Config" parent="hms_menu_config" sequence="2"/>
-      <menuitem id="room_type_menu" name="Room Type" parent="room_config" sequence="1" action="room_type_action_window"/>
-      <menuitem id="room_view_menu" name="Room View" parent="room_config" sequence="2" action="room_view_action_window"/>
-      <menuitem id="room_facility_menu" name="Room Facility" parent="room_config" sequence="3" action="room_facility_action_window"/>
-      <menuitem id="building_menu" name="Hotel Building" parent="room_config" sequence="4" action="building_action_window"/>
-      <menuitem id="room_location_menu" name="Room Location" parent="room_config" sequence="5" action="room_location_action_window"/>
+    <menuitem id="room_type_menu" name="Room Type" parent="room_config" sequence="1" action="room_type_action_window"/>
+    <menuitem id="room_view_menu" name="Room View" parent="room_config" sequence="2" action="room_view_action_window"/>
+    <menuitem id="room_facility_menu" name="Room Facility" parent="room_config" sequence="3" action="room_facility_action_window"/>
+    <menuitem id="building_menu" name="Hotel Building" parent="room_config" sequence="4" action="building_action_window"/>
+    <menuitem id="room_location_menu" name="Room Location" parent="room_config" sequence="5" action="room_location_action_window"/>
 
     <menuitem id="revenue_type_menu" name="Revenue Type" parent="hms_menu_config" sequence="3" action="revenue_type_action_window"/>
-    <menuitem id="sub_group_menu" name="Sub Group" parent="hms_menu_config" sequence="7" action="sub_group_action_window"/>
+    <!-- <menuitem id="sub_group_menu" name="Revenue Sub Group" parent="hms_menu_config" sequence="3" action="sub_group_action_window"/> -->
 
     <menuitem id="market_config" name="Market Config" parent="hms_menu_config" sequence="4"/>
-      <menuitem id="market_segment_menu" name="Market Segment" parent="market_config" sequence="1" action="market_segment_action_window"/>
-      <menuitem id="market_source_menu" name="Market Source" parent="market_config" sequence="2" action="market_source_action_window"/>
-      
+    <menuitem id="market_segment_menu" name="Market Segment" parent="market_config" sequence="1" action="market_segment_action_window"/>
+    <menuitem id="market_source_menu" name="Market Source" parent="market_config" sequence="2" action="market_source_action_window"/>
+
     <menuitem id="rsvn_type_set_menu" name="Reservation Type" parent="hms_menu_config" sequence="5"/>
-      <menuitem id="rsvn_type_menu" name="Reservation Type" parent="rsvn_type_set_menu" sequence="1" action="rsvn_type_action_window"/>
-      <menuitem id="rsvn_status_menu" name="Reservation Status" parent="rsvn_type_set_menu" sequence="2" action="rsvn_status_action_window"/>
-    
-    <!-- <menuitem id="building_config" name="Room Configuration" parent="hotel_menu_1" sequence="2"/>
-      <menuitem id="building_menu" name="Hotel Building" parent="building_config" sequence="5" action="building_action_window"/>
-      <menuitem id="room_location_menu" name="Room Location" parent="building_config" sequence="10" action="room_location_action_window"/> -->
-    
-    <!-- <menuitem id="market_config" name="Market Segment" parent="hotel_menu_1" sequence="3"/>
-      <menuitem id="market_segment_menu" name="Market Segment" parent="market_config" sequence="15" action="market_segment_action_window"/>
-      <menuitem id="market_source_menu" name="Market Source" parent="market_config" sequence="1" action="market_source_action_window"/> -->
-
-    <!-- <menuitem id="room_type_menu" name="Room Type" parent="hotel_menu_2" sequence="1" action="room_type_action_window"/>
-    <menuitem id="room_view_menu" name="Room View" parent="hotel_menu_2" sequence="2" action="room_view_action_window"/>
-    <menuitem id="room_facility_menu" name="Room Facility" parent="hotel_menu_2" sequence="3" action="room_facility_action_window"/> -->
-
-    <!-- <menuitem id="define_we_sp" name="Define Weeekend" parent="hotel_menu_3" sequence="1"/>
-      <menuitem id="weekend_menu" name="Weekend" parent="define_we_sp" sequence="1" action="weekend_action_window"/>
-      <menuitem id="special_day_menu" name="Special Day" parent="define_we_sp" sequence="2" action="special_day_action_window"/> -->
-      
-    <!-- <menuitem id="pkg_st_menu" name="Package" parent="hotel_menu_3" sequence="2"/>
-      <menuitem id="package_menu" name="Package" parent="pkg_st_menu" sequence="1" action="package_action_window"/> -->
-    
-    <!-- <menuitem id="rsvn_type_set_menu" name="Reservation Type" parent="hotel_menu_3" sequence="3"/>
-      <menuitem id="rsvn_type_menu" name="Reservation Type" parent="rsvn_type_set_menu" sequence="1" action="rsvn_type_action_window"/>
-      <menuitem id="rsvn_status_menu" name="Reservation Status" parent="rsvn_type_set_menu" sequence="2" action="rsvn_status_action_window"/> -->
-      <!-- <menuitem id="transaction_menu" name="Transactions" parent="rsvn_type_set_menu" sequence="3" action="transaction_action_window"/> -->
-      
-    <menuitem id="guest_profile_menu" name="Guest Profile" parent="hms_menu_config" sequence="6"/>
-      <menuitem id="guest_nationality_menu" name="Guest Nationality" parent="guest_profile_menu" sequence="3" action="hms_nationality_action_window"/>
-      <menuitem id="guest_passport_menu" name="Guest Passport" parent="guest_profile_menu" sequence="4" action="hms_passport_action_window"/>
-      
-    <!-- <menuitem id="contract_menu" name="Contract" parent="hms_menu_config" sequence="7" action="hms_contract_action_window"/> -->
+    <menuitem id="rsvn_type_menu" name="Reservation Type" parent="rsvn_type_set_menu" sequence="1" action="rsvn_type_action_window"/>
+    <menuitem id="rsvn_status_menu" name="Reservation Status" parent="rsvn_type_set_menu" sequence="2" action="rsvn_status_action_window"/>
 
   </data>
 </odoo>

@@ -1,0 +1,10 @@
+id,rev_code,rev_type,revtype_name,rev_subgroup
+1,1,R,Room Revenue,FALSE
+2,2,F,F&B Revenue,TRUE
+3,3,M,Telephone Revenue,FALSE
+4,4,M,Housekeeping Revenue,TRUE
+5,5,M,Miscellaneous,TRUE
+6,6,M,Miscellaneous,TRUE
+7,7,M,Miscellaneous,TRUE
+8,8,N,Non Revenue,FALSE
+9,9,P,Payment,FALSE

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Wizard for Reservation List -->
+    <record id="reservation_report_wiz" model="ir.ui.view">
+        <field name="name">Reservation List</field>
+        <field name="model">hms.reservation_report_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reservation Report">
+                <group>
+                    <field name="property_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </group>
+                <footer>
+                    <button name="get_report" string="Get Report" class="btn-primary" type="object" icon="fa-bars"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary" icon="fa-close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_reservation_report_wiz" model="ir.actions.act_window">
+        <field name="name">Reservation Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.reservation_report_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Report Wizard for Expected Arrival -->
+    <record id="expected_arr_report_wiz" model="ir.ui.view">
+        <field name="name">Expected Arrival</field>
+        <field name="model">hms.expected_arr_report_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Expected Arrival">
+                <group>
+                    <field name="property_id"/>
+                    <field name="arr_date"/>
+                    <field name="type_"/>
+                </group>
+                <footer>
+                    <button name="get_report" string="Get Report" class="btn-primary" type="object" icon="fa-bars"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary" icon="fa-close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_expected_arr_report_wiz" model="ir.actions.act_window">
+        <field name="name">Expected Arrival</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.expected_arr_report_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_property_report_wizard" name="Property Report" action="hms.property_report" parent="hms_menu_report" sequence="1"/>
+    <menuitem id="menu_reservation_report" name="Reservation Report" parent="hms_menu_report" sequence="2"/>
+    <menuitem id="menu_reservation_list_report" name="Reservation List" action="action_reservation_report_wiz" parent="menu_reservation_report" sequence="1"/>
+    <menuitem id="menu_expected_arrival_report" name="Expected Arrival" action="action_expected_arr_report_wiz" parent="menu_reservation_report" sequence="2"/>
+</odoo>

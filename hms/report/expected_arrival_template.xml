@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_expected_arrival_qweb">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="row">
+                        <h4>
+                            <span t-esc="property_id"/>
+                        </h4>
+                    </div>
+                    <div class="row">
+                        <h5>
+                            <strong>
+                                <strong>Expected Arrival by 
+                                    <t t-if="type_ == 'group'">
+                                    Company
+                                    </t>
+                                    <t t-if="not type_ == 'group'">
+                                    Individual
+                                    </t>
+                                </strong>
+                            </strong>
+                        </h5>
+                    </div>
+                    <div class="row mt16 mb16">
+                        <strong>Report Date:</strong>
+                        <span t-esc="arr_date"/>
+                    </div>
+                    <table class="table table-condensed" style="width:100%;font-size:14px;background:#f5f5f0;">
+                        <thead>
+                            <tr>
+                                <th style="width:15%;border:1px solid lightgray;">
+                                    #No
+                                </th>
+                                <th style="width:14%;border:1px solid lightgray;">
+                                    Company
+                                </th>
+                                <th style="width:14%;border:1px solid lightgray;">
+                                    Group
+                                </th>
+                                <th style="width:14%;border:1px solid lightgray;">
+                                    Guest Name
+                                </th>
+                                <th style="width:10%;border:1px solid lightgray;">
+                                    Arr.Date
+                                </th>
+                                <th style="width:10%;border:1px solid lightgray;">
+                                    Dep.Date
+                                </th>
+                                <th style="width:15%;border:1px solid lightgray;">
+                                    Rmty
+                                </th>
+                                <th style="width:2%;border:1px solid lightgray;">
+                                    Rm
+                                </th>
+                                <th style="width:2%;border:1px solid lightgray;">
+                                    Pax
+                                </th>
+                                <th style="width:3%;border:1px solid lightgray;">
+                                    Mkt
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody style="background:white;">
+                            <tr t-foreach="get_expected_arrival" t-as="info">
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.confirm_no"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.company_id.name"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.group_id.name"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.guest_id.name"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.arrival"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.departure"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.room_type.name"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.rooms"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.pax"/>
+                                </td>
+                                <td style="border:1px solid lightgray;">
+                                    <span t-field="info.market.market_code"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+

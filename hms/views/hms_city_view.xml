@@ -54,11 +54,11 @@
        <field name="res_model">hms.city</field>
        <field name="view_mode">tree,form</field>
        <field name="view_id" ref="view_city_tree"/> 
-    </record> 
+    </record>
     <menuitem  id="city_menu_root" 
       name="City" 
-      parent="hms_menu_config"
+      parent="country_menu_root"
       action="action_city_all"
-      sequence="10"/>
+      sequence="30"/>
   </data>
 </odoo>

@@ -2,9 +2,9 @@
   <data>
     <!-- explicit list view definition -->
 <!--
-    <record model="ir.ui.view" id="hms_ssy.list">
-      <field name="name">hms_ssy list</field>
-      <field name="model">hms_ssy.hms_ssy</field>
+    <record model="ir.ui.view" id="hms.list">
+      <field name="name">hms list</field>
+      <field name="model">hms.hms</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
@@ -17,18 +17,18 @@
 
     <!-- actions opening views on models -->
 <!--
-    <record model="ir.actions.act_window" id="hms_ssy.action_window">
-      <field name="name">hms_ssy window</field>
-      <field name="res_model">hms_ssy.hms_ssy</field>
+    <record model="ir.actions.act_window" id="hms.action_window">
+      <field name="name">hms window</field>
+      <field name="res_model">hms.hms</field>
       <field name="view_mode">tree,form</field>
     </record>
 -->
 
     <!-- server action to the one above -->
 <!--
-    <record model="ir.actions.server" id="hms_ssy.action_server">
-      <field name="name">hms_ssy server</field>
-      <field name="model_id" ref="model_hms_ssy_hms_ssy"/>
+    <record model="ir.actions.server" id="hms.action_server">
+      <field name="name">hms server</field>
+      <field name="model_id" ref="model_hms_hms"/>
       <field name="state">code</field>
       <field name="code">
         action = {
@@ -42,19 +42,19 @@
 
     <!-- Top menu item -->
 <!--
-    <menuitem name="hms_ssy" id="hms_ssy.menu_root"/>
+    <menuitem name="hms" id="hms.menu_root"/>
 -->
     <!-- menu categories -->
 <!--
-    <menuitem name="Menu 1" id="hms_ssy.menu_1" parent="hms_ssy.menu_root"/>
-    <menuitem name="Menu 2" id="hms_ssy.menu_2" parent="hms_ssy.menu_root"/>
+    <menuitem name="Menu 1" id="hms.menu_1" parent="hms.menu_root"/>
+    <menuitem name="Menu 2" id="hms.menu_2" parent="hms.menu_root"/>
 -->
     <!-- actions -->
 <!--
-    <menuitem name="List" id="hms_ssy.menu_1_list" parent="hms_ssy.menu_1"
-              action="hms_ssy.action_window"/>
-    <menuitem name="Server to list" id="hms_ssy" parent="hms_ssy.menu_2"
-              action="hms_ssy.action_server"/>
+    <menuitem name="List" id="hms.menu_1_list" parent="hms.menu_1"
+              action="hms.action_window"/>
+    <menuitem name="Server to list" id="hms" parent="hms.menu_2"
+              action="hms.action_server"/>
 -->
   </data>
 </odoo>

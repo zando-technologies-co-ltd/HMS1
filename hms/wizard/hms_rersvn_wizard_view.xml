@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Confirm Status for Reservation -->
+    <record id="view_rersvn_wiz" model="ir.ui.view">
+        <field name="name">Re Reservation Status</field>
+        <field name="model">hms.rersvn_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirmed Status">
+                <p style="font-weight:bold;">
+                    Choose Status
+                </p>
+                <group>
+                    <group>
+                        <field name="reservation_id" invisible="1"/>
+                        <field name="reservation_no" readonly="1"/>
+                    </group>
+                    <group>
+                        <label string="Type" for="reservation_type"/>
+                        <div>
+                            <field name="reservation_type" />
+                        </div>
+                        <label string="Confirmed Status" for="reservation_status"/>
+                        <div>
+                            <field name="reservation_status" domain="[('rsvntype_id', '=', reservation_type)]"/>
+                        </div>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_rersvn_wiz" string="OK" type="object" context="{'active_id':active_id}" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_rersvn_wiz" model="ir.actions.act_window">
+        <field name="name">Re Reservation Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.rersvn_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'active_id':active_id}</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Confirm Status for Reservation Line -->
+    <record id="view_rersvn_line_wiz" model="ir.ui.view">
+        <field name="name">Confirmed Status</field>
+        <field name="model">hms.rersvn_line_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirmed Status">
+                <p style="font-weight:bold;">
+                    Choose Confirmed Status
+                </p>
+                <group>
+                    <group>
+                        <field name="reservation_line_id" invisible="1"/>
+                        <field name="reservation_no" readonly="1"/>
+                    </group>
+                    <group>
+                        <label string="Type" for="reservation_type"/>
+                        <div>
+                            <field name="reservation_type"/>
+                        </div>
+                        <label string="Confirmed Status" for="reservation_status"/>
+                        <div>
+                            <field name="reservation_status" domain="[('rsvntype_id', '=', reservation_type)]"/>
+                        </div>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_rersvn_line_wiz" string="OK" type="object" context="{'active_id':active_id}" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_rersvn_line_wiz" model="ir.actions.act_window">
+        <field name="name">Re Reservation Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hms.rersvn_line_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'active_id':active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

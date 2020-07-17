@@ -1,0 +1,70 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_currency_form">
+      <field name="name">Currency Form</field>
+      <field name="model">hms.currency</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+           <div class="oe_button_box" name="button_box">
+              <button name="action_status" type="object" class="oe_stat_button" icon="fa-archive">
+                  <field name="status" widget="boolean_button" options="{'terminology':{
+                                            'string_true': 'Active',
+                                            'hover_true': 'Active',
+                                            'string_false': 'In Active',
+                                            'hover_false': 'In Active'
+                                        }}"/>
+              </button>
+            </div>
+            <div class="oe_title">
+            <label for="name" string="Currency Name"/>
+            <h1>
+                <field name="name" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group>
+            <group>
+                <field name="symbol"/>
+            </group>
+          </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <!-- Currency List View-->
+    <record model="ir.ui.view" id="view_currency_tree">
+      <field name="name">Currency list</field>
+      <field name="model">hms.currency</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="symbol"/>
+          <field name="status"/> 
+        </tree>
+      </field>
+    </record>
+
+    <!-- Currency Search View -->
+     <record model="ir.ui.view" id="view_currency_filter">
+      <field name="name">Currency list</field>
+      <field name="model">hms.currency</field>
+      <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="symbol"/> 
+        </search>
+      </field>
+    </record>
+     <record id="action_currency_all" model="ir.actions.act_window">
+       <field name="name">Currency</field>
+       <field name="res_model">hms.currency</field>
+       <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_currency_tree"/> 
+    </record> 
+    <menuitem  id="currency_menu_root" 
+      name="Currency" 
+      parent="hms_menu_setting"
+      action="base.action_currency_all_form"
+      sequence="3"/>
+  </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Report for Property -->
+    <report id="property_report_id" string="Property Report" model="property.property" report_type="qweb-pdf" name="hms.report_property_qweb" menu="False"/>
+    <record id="property_report" model="ir.actions.report">
+        <field name="name">Property Report</field>
+        <field name="model">report.hms.report_property_qweb</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hms.report_property_qweb</field>
+    </record>
+
+    <!-- Custom Report for Reservation List -->
+    <report id="reservation_report_id" string="Reservation Report" model="hms.reservation.line" report_type="qweb-pdf" name="hms.report_reservation_qweb" menu="False"/>
+    <record id="reservation_report" model="ir.actions.report">
+        <field name="name">Reservation Report</field>
+        <field name="model">report.hms.report_reservation_qweb</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hms.report_reservation_qweb</field>
+    </record>
+
+    <!-- Custom Report for Expected Arrival -->
+    <report id="expected_arrival_report_id" string="Expected Arrival" model="hms.reservation.line" report_type="qweb-pdf" name="hms.report_expected_arrival_qweb" menu="False"/>
+    <record id="expected_arrival_report" model="ir.actions.report">
+        <field name="name">Expected Arrival Report</field>
+        <field name="model">report.hms.report_expected_arrival_qweb</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hms.report_expected_arrival_qweb</field>
+    </record>
+
+</odoo>

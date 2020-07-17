@@ -53,9 +53,13 @@
        <field name="view_id" ref="view_country_tree"/> 
     </record> 
     <menuitem  id="country_menu_root" 
-      name="Country" 
-      parent="hms_menu_config"
-      action="base.action_country"
+      name="Country/Nationality" 
+      parent="hms_menu_setting"
       sequence="30"/>
+    <menuitem  id="country_menu" 
+      name="Country" 
+      parent="country_menu_root"
+      action="base.action_country"
+      sequence="10"/>
   </data>
 </odoo>
