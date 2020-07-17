@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE xml>
-<odoo>
-    <!--Report for hotel Property -->
-    <!-- <report id="property_reports" string="Property (PDF)" model="property.property" report_type="qweb-pdf" file="hms.report_property_property" name="hms.report_property_property" print_report_name="'Property - %s' % (object.name)" /> -->
-</odoo>
