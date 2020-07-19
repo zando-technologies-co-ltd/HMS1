@@ -1,5 +1,6 @@
 FROM debian:buster-slim
-MAINTAINER Odoo S.A. <info@odoo.com>
+#MAINTAINER Odoo S.A. <info@odoo.com>
+LABEL maintainer="Odoo S.A. <info@odoo.com>"
 
 SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
 
@@ -80,7 +81,7 @@ EXPOSE 8069 8071 8072
 ENV ODOO_RC /etc/odoo/odoo.conf
 
 COPY wait-for-psql.py /usr/local/bin/wait-for-psql.py
-
+RUN chmod +x /usr/local/bin/wait-for-psql.py
 # Set default user when running the container
 USER odoo
 
