@@ -1,0 +1,69 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_township_form">
+      <field name="name">Township Form</field>
+      <field name="model">hms.township</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+           <div class="oe_button_box" name="button_box">
+              <button  type="object" class="oe_stat_button" icon="fa-archive">
+                  <!-- <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/> -->
+              </button>
+            </div>
+            <div class="oe_title">
+            <label for="name" string="State Name"/>
+            <h1>
+                <field name="name" placeholder="Name..."/>
+            </h1>
+          </div>
+          <group>
+            <group>
+                <field name="code"/>
+                <field name="city_id"/> 
+            </group>
+          </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_township_tree">
+      <field name="name">Township list</field>
+      <field name="model">hms.township</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="code"/>
+          <field name="name"/>
+          <field name="city_id"/> 
+        </tree>
+      </field>
+    </record>
+     <record model="ir.ui.view" id="view_township_filter">
+      <field name="name">Township list</field>
+      <field name="model">hms.township</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="code"/>
+          <field name="name"/>
+          <field name="city_id"/> 
+        </search>
+      </field>
+    </record>
+     <record id="action_township_all" model="ir.actions.act_window">
+       <field name="name">Townships</field>
+       <field name="res_model">hms.township</field>
+       <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_township_tree"/> 
+    </record>
+    <menuitem  id="state_menu_root" 
+      name="State" 
+      parent="hms_menu_config"
+      action="base.action_country_state"
+      sequence="20"/>
+    <menuitem  id="township_menu_root" 
+      name="Township" 
+      parent="hms_menu_config"
+      action="action_township_all"
+      sequence="21"/>
+  </data>
+</odoo>

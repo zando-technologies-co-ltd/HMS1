@@ -1,0 +1,16 @@
+id,country_id:id,name,code
+state_mm_1,base.mm,Kachin,KACHIN
+state_mm_2,base.mm,Nay Pyi Taw,NAYPYITAW
+state_mm_3,base.mm,Kayah,KAYAH
+state_mm_4,base.mm,Mon,MON
+state_mm_5,base.mm,Rakhine,RAKHINE
+state_mm_6,base.mm,Ayeyawady,AYEYAWADY
+state_mm_7,base.mm,Yangon,YANGON
+state_mm_8,base.mm,Shan,SHAN
+state_mm_9,base.mm,Mandalay,MANDALAY
+state_mm_10,base.mm,Tanintharyi,TANINTHARYI
+state_mm_11,base.mm,Magway,MAGWAY
+state_mm_12,base.mm,Chin,CHIN
+state_mm_13,base.mm,Sagaing,SAGAING
+state_mm_14,base.mm,Bago,BAGO
+state_mm_15,base.mm,Kayin,KAYIN

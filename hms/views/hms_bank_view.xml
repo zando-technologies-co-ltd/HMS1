@@ -1,0 +1,103 @@
+<odoo>
+    <data>
+        <record id="base.view_res_bank_form" model="ir.ui.view">
+            <field name="name">res.bank.form</field>
+            <field name="model">res.bank</field>
+            <field name="arch" type="xml">
+                <form string="Bank">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" class="oe_stat_button" icon="fa-archive">
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                            <field name="logo" widget="image"/>
+                        </div>
+                        <group col="4">
+                            <field name="branch"/>
+                            <field name="bic"/>
+                        </group>
+                        <group>
+                            <group string="Address">
+                                <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state" class="o_address_state" placeholder="State" options='{"no_open": True, "no_create_edit":True, "no_create": True}'/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create_edit":True, "no_create": True}'/>
+                                </div>
+                            </group>
+                            <group string="Communication">
+                                <field name="phone"/>
+                                <field name="email" widget="email"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_res_bank_tree_extension" model="ir.ui.view">
+            <field name="name">res.bank.tree</field>
+            <field name="model">res.bank</field>
+            <field name="inherit_id" ref="base.view_res_bank_tree"/>
+            <field name="arch" type="xml">
+                <field name="bic" position="before">
+                    <field name="branch"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="bank_view_kanban" model="ir.ui.view">
+            <field name="name">res.bank.kanban</field>
+            <field name="model">res.bank</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="logo"/>
+                    <field name="branch"/>
+                    <field name="bic"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div>
+                                    <div class="o_kanban_image">
+                                        <img alt="image" t-att-src="kanban_image('res.bank', 'logo',record.id.raw_value)"/>
+                                    </div>
+                                    <div class="oe_kanban_details">
+                                        <field name="name"/>
+                                        <field name="branch"/>
+                                        <field name="bic"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="base.action_res_bank_form" model="ir.actions.act_window">
+            <field name="name">Banks</field>
+            <field name="res_model">res.bank</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="view_id" ref="base.view_res_bank_form"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new bank
+                </p><p>
+                    Manage bank records you want to be used in the system.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
